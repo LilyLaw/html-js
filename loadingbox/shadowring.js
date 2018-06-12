@@ -40,9 +40,9 @@
 			par.attr("id", "imgsparent").css("position", "relative").css("width", wi + 'px').css("height", ht + 'px');
 			$(y).css("position", "absolute");
 			par.append($("<div></div>").attr("id", "s" + j).css("position", "absolute").css("width", wi + 'px').css("height", ht + 'px').css("background-color", "#000").css("opacity", "0.4")
-				.css("z-index", "1").css("left", lf + 'px').css("top", tp + 'px').css("border-radius", rd).css("overflow", of ));
+				.css("z-index", "1").css("left", lf + 'px').css("top", tp + 'px').css("border-radius", rd).css("overflow", of));
 			par.append($("<div></div>").attr("id", "can").css("z-index", "2").css("position", "absolute").css("width", wi + 'px').css("height", ht + 'px').css("left", lf + 'px')
-				.css("top", tp + 'px').css("border-radius", rd).css("overflow", of ));
+				.css("top", tp + 'px').css("border-radius", rd).css("overflow", of));
 			let cv = $("<canvas></canvas>").attr("width", wi).attr("height", ht).css("font-family", fontfamily).css("letter-spacing", "3px");
 			ctx = cv[0].getContext("2d");
 			par.find("#can").append(cv);
@@ -54,7 +54,7 @@
 			drawtext(wi / 2, ht / 2, ti, ctx, fontsize);
 
 			function float(node, prentId) {
-				if(node.parent().attr("id") != prentId) {} else {
+				if (node.parent().attr("id") != prentId) {} else {
 					node.siblings().remove();
 					node.unwrap();
 					float(node, prentId);
@@ -74,7 +74,7 @@
 				//画右侧表针
 				let Eagle = (ti * Math.PI * 2 / count) - (Math.PI / 2);
 
-				if(ti == 1) {
+				if (ti == 1) {
 					clearArc(x0, y0, r, ctx, 5);
 				}
 
@@ -96,7 +96,7 @@
 				ctx.arc(x0, y0, r - offset, -Math.PI / 2, ti == 0 ? Math.PI * 3 / 2 : Eagle);
 				ctx.lineWidth = 1;
 				ctx.stroke();
-				
+
 				//绘制圆角
 				ctx.save();
 				ctx.beginPath();
@@ -134,7 +134,7 @@
 			}
 
 			function clearArc(x0, y0, r, ctx, smooth) {
-				for(let i = 0; i < r * smooth * 2; i++) {
+				for (let i = 0; i < r * smooth * 2; i++) {
 					let ht = Math.sqrt(r * r - (r - i / smooth) * (r - i / smooth));
 					ctx.clearRect(x0 - r + i / smooth, y0 - ht, 1 / smooth, ht * 2);
 				}
