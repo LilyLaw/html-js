@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="style.css" />
+		<style type="text/css">
+			body{background-color: #212121}
+			@font-face {
+				font-family: clock1;
+				src: url(font/290-CAI978.ttf);
+			}
+			
+			@font-face {
+				font-family: clock2;
+				src: url(font/293-CAI978.ttf);
+			}
+			
+			@font-face {
+				font-family: clock3;
+				src: url(font/300-CAI978.ttf);
+			}
+			
+			#bg {
+				width: 800px;
+				height: 900px;
+				margin: 0px auto;
+				padding-top: 30px;
+				overflow: hidden;
+			}
+			
+			.d {
+				margin: 20px auto;
+				text-align: center;
+				overflow: hidden;
+			}
+			
+			img {
+				width: 400px;
+				height: auto;
+				background-image: url(img/timg.jpg);
+				background-size: 100% 100%;
+				margin: 0 auto;
+				border-radius: 100px;
+				overflow: hidden;
+			}
+		</style>
+		<script src="jquery-1.10.2.js"></script>
+		<script type="text/javascript" src="shadowring.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#update").click(sc);
+			})
+
+			function sc() {
+
+				for(let i = 1; i <= 100; i++) {
+					setTimeout(`shadow(${i})`, i * 50);
+				}
+			}
+
+			function shadow(val) {
+				$("img").each((i, x) => {
+					if($(x)[0].offsetHeight > 0) {
+						$(x).ShadowRing({
+							r: 350,
+							ti: val,
+							count: 100,
+							offset: 10,
+							fontsize: 50,
+							fontfamily: "clock2"
+						})
+					}
+				});
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="bg">
+
+			<div id="imgdiv0" class="d">
+				<img id="img0" src="img/a1.png" />
+			</div>
+
+			<div id="imgdiv1" class="d">
+				<img id="img1" src="img/a2.png" />
+			</div>
+
+			<div id="imgdiv2" class="d">
+				<img id="img2" src="img/a3.png" />
+			</div>
+			<div id="button" class="d">
+				<input type="button" id="update" class="btn" value="点击查看效果" />
+			</div>
+
+			</form>
+
+	</body>
+
+</html>
