@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>label标签</title>
+</head>
+<body>
+	<!-- 显式关联是通过label标签的for属性，显式与另一个表单控件关联。需要注意的是，for属性的值必须是与label标签在同一文档中的可标记表单元素的id，注意是id而不是name -->
+	<div class="con">
+			<!-- 显示关联 -->
+			<input type="radio" id="male" name="sex"/>
+			<label for="male">male</label>
+			<input type="radio" id="female" name="sex"/>
+			<label for="female">female</label>
+
+			<!-- 隐式关联   点击文本可使文本框获得焦点
+				注意此时不能有for 属性
+			-->
+			<label >
+				xuanzhongname
+				<input type="text" placeholder="name" >
+			</label>
+	</div>
+</body>
+</html>
