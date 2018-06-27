@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax 跨域</title>
+</head>
+<body>
+	<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+	<script type="text/javascript">
+		// 方法一：jsonp解决,
+		// 缺点，只能用get传参，若参数较多，url过长可能导致参数被截掉
+		// 注意jsonp方式后台获取数据，也要用jsonp方式来获取，如下：
+		// $callback = $this->input->get('callback');
+		// $phone = $this->input->get('phone');
+		// $country = $this->input->get('country');
+		// $orderid = $this->input->get('orderid');
+
+		$.ajax({
+			type:"get",
+          	dataType:"jsonp",
+          	jsonp:'callback',
+			url:"http://www.baidu.com?name=test&sex=female",
+			success:function(status,data){
+				console.log(status,data);
+			},
+			error:function(){
+
+			}
+		})
+	</script>
+</body>
+</html>
