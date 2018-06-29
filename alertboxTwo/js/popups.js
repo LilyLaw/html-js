@@ -1,5 +1,3 @@
-
-
 /*alert弹出层*/
 function jqalert(param) {
     var title = param.title,
