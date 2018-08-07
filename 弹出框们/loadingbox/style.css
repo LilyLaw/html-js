@@ -1,0 +1,88 @@
+body {
+    background-color: #212121
+}
+
+@font-face {
+    font-family: clock1;
+    src: url(font/290-CAI978.ttf);
+}
+
+@font-face {
+    font-family: clock2;
+    src: url(font/293-CAI978.ttf);
+}
+
+@font-face {
+    font-family: clock3;
+    src: url(font/300-CAI978.ttf);
+}
+
+#bg {
+    width: 800px;
+    height: 900px;
+    margin: 0px auto;
+    padding-top: 30px;
+    overflow: hidden;
+}
+
+.d {
+    margin: 20px auto;
+    text-align: center;
+    overflow: hidden;
+}
+
+img {
+    width: 400px;
+    height: auto;
+    background-image: url(img/timg.jpg);
+    background-size: 100% 100%;
+    margin: 0 auto;
+    border-radius: 100px;
+    overflow: hidden;
+}
+
+.btn {
+    font-family: "微软雅黑";
+    font-weight: 650;
+    font-size: 20px;
+    margin: 20px auto;
+
+    padding: 10px 100px 10px 100px;
+    color: #222;
+    border: none;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#aaa));
+    background: -ms-linear-gradient(right, #fff 0%, #ddd 100%);
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#ddd', GradientType=0);
+    -webkit-background-color: linear-gradient(to right, #fff, #0ff);
+    -webkit-border-radius: 23px;
+    -moz-border-radius: 23px;
+    -o-border-radius: 23px;
+    border-radius: 23px;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@-webkit-keyframes pulse {
+    0% {
+        -webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.2);
+    }
+    50% {
+        -webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.9);
+    }
+    100% {
+        -webkit-box-shadow: 0 0 12px rgba(51, 204, 255, 0.2);
+    }
+}
+
+.btn:hover,
+.btn:focus {
+    cursor: pointer;
+    color: #000;
+    -webkit-animation: pulse 3s infinite ease-in-out;
+    transition: all 0.5s ease-in-out;
+    -webkit-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.7);
+}

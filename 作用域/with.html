@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>欺骗词法 with</title>
+</head>
+<body>
+	<script>
+		// with 通常被当作重复引用同一个对象中的多个属性的快捷方式，可以不需要重复引用对象本身。
+		// var obj = {
+		// 	a: 1,
+		// 	b: 2,
+		// 	c: 3
+		// };
+		// // 单调乏味的重复"obj"
+		// // obj.a = 2;
+		// // obj.b = 3;
+		// // obj.c = 4;
+		// // 简单的快捷方式
+		// with (obj) {
+		// 	a = 3;
+		// 	b = 4;
+		// 	c = 5;
+		// }
+		// console.log(obj);
+
+		// 但作用不仅限于此
+		function foo(obj) {
+			with (obj) {
+				a = 2;
+			}
+		}
+		var o1 = {
+			a: 3
+		};
+		var o2 = {
+			b: 3
+		};
+		foo( o1 );
+		console.log( o1.a ); // 2
+		foo( o2 );
+		console.log( o2.a ); // undefined
+		console.log( a ); // 2——不好，a 被泄漏到全局作用域上了！
+
+		// 们将o1 传递进去，a＝2 赋值操作找到了o1.a 并将2 赋值给它，这在后面的console.log(o1.a) 中可以体现。而当o2 传递进去，o2 并没有a 属性，因此不会创建这个属性，o2.a 保持undefined。
+		// 但是可以注意到一个奇怪的副作用，实际上a = 2 赋值操作创建了一个全局的变量a。
+		// 尽管with 块可以将一个对象处理为词法作用域，但是这个块内部正常的var声明并不会被限制在这个块的作用域中，而是被添加到with 所处的函数作用域中。
+		// eval(..) 函数如果接受了含有一个或多个声明的代码，就会修改其所处的词法作用域，而with 声明实际上是根据你传递给它的对象凭空创建了一个全新的词法作用域。
+
+		// 不推荐使用with，且其在严格模式下会被影响
+	</script>
+</body>
+</html>
