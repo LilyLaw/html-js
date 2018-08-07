@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>let 定义变量</title>
+</head>
+<body>
+	<script>
+		//let 和 var的区别
+
+		//1.作用域有区别
+		// for(let i = 0;i<10;i++){
+		// 	console.log("s"+i);
+		// }
+		// console.log(i);
+
+		// for(var i = 0;i<10;i++){
+		// 	console.log("s"+i);
+		// }
+		// console.log(i);
+
+		// 2. 不论var声明的变量处于当前作用域的第几行，都会提升到作用域的头部。
+		// 但是使用let 进行的声明不会在块作用域中进行提升。声明的代码被运行之前，声明并不“存在”。但是直接用let声明变量不赋值是会打印undefined，还是初始化了，只是let声明放在赋值之后，let声明会提前但不会初始化。
+		// console.log(m);		//undefined
+		// var m = 44;
+		// 相当于
+		// var m;
+		// console.log(m);
+		// m=44;
+
+		// console.log(n);		// 报错ReferenceError，相当于在第一行先声明bar但没有初始化，直到赋值时才初始化
+		// let n = 55;
+
+
+		// let不允许在相同作用域内，重复声明同一个变量。
+		// var a = 1;
+		// var a = 2;
+		// console.log(a);
+
+		// let b = 1;
+		// let b = 2;
+		// console.log(b);		//报错 Uncaught SyntaxError: Identifier 'b' has already been declared
+
+		// var c = 1;
+		// let c = 2;
+		// console.log(c);		//报错 Uncaught SyntaxError: Identifier 'c' has already been declared
+	</script>
+</body>
+</html>
