@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>const 固定变量</title>
+</head>
+<body>
+	<script>
+		// ES6 还引入了const，同样可以用来创建块作用域变量，但其值是固定的（常量）。之后任何试图修改值的操作都会引起错误。
+		const myname = "lily";
+		console.log(myname);
+		myname = "change";
+		console.log(myname);	//报错 Uncaught TypeError: Assignment to constant variable.
+	</script>
+</body>
+</html>
