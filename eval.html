@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>欺骗词法 eval</title>
+</head>
+<body>
+	<script>
+	// JavaScript 中的eval(..) 函数可以接受一个字符串为参数，并将其中的内容视为好像在书写时就存在于程序中这个位置的代码。类似可以在你写的代码中用程序生成代码并运行，就好像代码是写在那个位置的一样。
+	// 根据这个原理来理解eval(..)，它是如何通过代码欺骗和假装成书写时（也就是词法期）代码就在那，来实现修改词法作用域环境的，
+	// function foo(str,a){
+	// 	eval(str);
+	// 	console.log(a,b);
+	// }
+	// foo("var b = 3",1);
+
+	// 在严格模式下，eval(..) 在运行时有其自己的词法作用域，意味着其中的声明无法修改所在的作用域。
+	function foo(str,a){
+		"use strict";
+		eval(str);
+		console.log(a,b);
+	}
+	foo("var b = 3",1);
+
+	// 在程序中动态生成代码的使用场景非常罕见，因为它所带来的好处无法抵消性能上的损失。
+	</script>
+</body>
+</html>
