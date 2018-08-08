@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>compiler 编译器作用机制</title>
+</head>
+<body>
+	<script>
+		// 引擎会在解释JavaScript 代码之前首先对其进行编译。编译阶段中的一部分工作就是找到所有的声明，并用合适的作用域将它们关联起来。
+		// 因此，包括变量和函数在内的所有声明都会在任何代码被执行前首先被处理。
+		// 当看到var a = 2; 时 ,JavaScript 实际上会将其看成两个声明：var a; 和a = 2;。
+		// 第一个定义声明是在编译阶段进行的。
+		// 第二个赋值声明会被留在原地等待执行阶段。
+
+		// 但是应该注意 只有声明本身会被提升，而赋值或其他运行逻辑会留在原地。如果提升改变了代码执行的顺序，会造成非常严重的破坏。
+
+		// foo();
+		// function foo() {
+		// 	console.log( a ); // undefined
+		// 	var a = 2;
+		// }
+	</script>
+</body>
+</html>

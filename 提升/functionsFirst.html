@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>函数优先</title>
+</head>
+<body>
+	<script>
+		// 函数声明和变量声明都会被提升。但是一个值得注意的细节（这个细节可以出现在有多个“重复”声明的代码中）是函数会首先被提升，然后才是变量。
+		// 考虑以下代码：
+		// foo(); // 1
+		// var foo;
+		// function foo() {
+		// 	console.log( 1 );
+		// }
+		// foo = function() {
+		// 	console.log( 2 );
+		// };
+		// foo();	//2
+		// 会输出1 而不是2 ！这个代码片段会被引擎理解为如下形式：
+		// function foo() {
+		// 	console.log( 1 );
+		// }
+		// foo();
+		// foo = function() {
+		// 	console.log( 2 );
+		// };
+		// 注意，var foo 尽管出现在function foo()... 的声明之前，但它是重复的声明（因此被忽略了），因为函数声明会被提升到普通变量之前。
+		// 尽管重复的var 声明会被忽略掉，但出现在后面的函数声明还是可以覆盖前面的。
+		// 如下代码
+		foo(); // 3
+		function foo() {
+			console.log( 1 );
+		}
+		var foo = function() {
+			console.log( 2 );
+		};
+		function foo() {
+			console.log( 3 );
+		}
+	</script>
+</body>
+</html>
