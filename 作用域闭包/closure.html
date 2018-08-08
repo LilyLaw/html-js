@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>closure 闭包</title>
+</head>
+<body>
+
+	<script>
+		// 闭包有两个作用： 
+		// 第一个就是可以读取自身函数外部的变量（沿着作用域链寻找） 
+		// 第二个就是让这些外部变量始终保存在内存中 
+		// function outer(){
+  //        var result = new Array();
+  //        for(var i = 0; i < 2; i++){//注：i是outer()的局部变量
+  //           result[i] = function(){
+  //              return i;
+  //           }
+  //        }
+  //        return result;//返回一个函数对象数组
+  //        //这个时候会初始化result.length个关于内部函数的作用域链
+  //     }
+  //     var fn = outer();
+  //     console.log(fn[0]());//result：2
+  //     console.log(fn[1]());//result：2
+
+
+
+  		// 函数的作用域是静态的，一个函数不管在哪被调用，它的作用域都是声明时的作用域。函数的作用域在声明时就已经被创建，在调用函数时会去访问他已经创建的作用域。
+  		//   var flag = "outer";
+		  // function demo(){
+		  //     var flag = "inner";
+		  //     function inner(){
+		  //         console.log(flag);
+		  //     }
+		  //     return inner;
+		  // }
+		  // var fn = demo();
+		  // fn();//inner
+
+
+  //       var flag = "outer";
+		// function demo(){
+		//     var flag = "inner";
+		//     fn();
+		// }
+		// function fn(){
+		//     console.log(flag);
+		// }
+		// demo();	//outer
+
+
+		// JS是一种单线程的语言，而setTimeout是异步的，只有当我们的代码执行完成以后setTimeout的处理函数才会执行，而执行的时候i的值已经是4了所以最终的输出全是4。
+		// for(var i=0;i<4;i++){
+	 //        setTimeout(function(){
+		//         console.log(i);
+		//     });
+		// }
+		// 我们可以通过闭包来解决这一问题：
+		for(var i=0;i<4;i++){
+	      (function(i){
+	          setTimeout(function(){
+	              console.log(i)
+			  })
+		  }(i))
+		}
+	</script>
+</body>
+</html>
