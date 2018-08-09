@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this 隐式绑定</title>
+</head>
+<body>
+	<script>
+		// 如下代码
+		function foo() {
+			console.log(this.a);
+		}
+		var obj = {
+			a: 2,
+			foo: foo
+		};
+		obj.foo(); // 2
+
+		// 首先需要注意的是foo() 的声明方式，及其之后是如何被当作引用属性添加到obj 中的。但是无论是直接在obj 中定义还是先定义再添加为引用属性，这个函数严格来说都不属于obj 对象。		为啥呢？？？？？？？为啥直接定义都不行？
+		// 然而，调用位置会使用obj 上下文来引用函数，因此你可以说函数被调用时obj 对象“拥有”或者“包含”它。
+		// 当foo() 被调用时，它的落脚点确实指向obj 对象。当函数引用有上下文对象时，隐式绑定规则会把函数调用中的this 绑定到这个上下文对象。因为调用foo() 时this 被绑定到obj，因此this.a 和obj.a 是一样的。
+
+
+
+		// 对象属性引用链中只有最顶层或者说最后一层会影响调用位置
+		// function foo() {
+		// 	console.log(this.a);
+		// }
+		// var obj2 = {
+		// 	a: 42,
+		// 	foo: foo
+		// };
+		// var obj1 = {
+		// 	a: 2,
+		// 	obj2: obj2
+		// };
+		// obj1.obj2.foo(); // 42
+
+
+
+		// 隐式丢失
+		// 一个最常见的this 绑定问题就是被隐式绑定的函数会丢失绑定对象，也就是说它会应用默认绑定，从而把this 绑定到全局对象或者undefined 上，取决于是否是严格模式。
+		function foo() {
+			console.log(this.a);
+		}
+		var obj = {
+			a: 2,
+			foo: foo
+		};
+		var bar = obj.foo; // 函数别名！
+		var a = "oops, global"; // a 是全局对象的属性
+		bar(); // "oops, global"
+		// 虽然bar 是obj.foo 的一个引用，但是实际上，它引用的是foo 函数本身，因此此时的bar() 其实是一个不带任何修饰的函数调用，因此应用了默认绑定。
+
+
+		// 一种更微妙、更常见并且更出乎意料的情况发生在传入回调函数时：
+		function foo() {
+			console.log(this.a);
+		}
+		function doFoo(fn) {
+			// fn 其实引用的是foo
+			fn(); // <-- 调用位置！
+		}
+		var obj = {
+			a: 2,
+			foo: foo
+		};
+		var a = "oops, global"; // a 是全局对象的属性
+		doFoo(obj.foo); // "oops, global"
+	</script>
+</body>
+</html>

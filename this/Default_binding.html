@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this 默认绑定</title>
+</head>
+<body>
+	<script>
+		// 思考如下代码
+		// function foo() {
+		// 	console.log(this.a);
+		// }
+		// var a = 2;
+		// foo(); // 2
+
+		// 声明在全局作用域中的变量（比如var a = 2）就是全局对象的一个同名属性。
+		// 当调用foo() 时，this.a 被解析成了全局变量a。因为在本例中，函数调用时应用了this 的默认绑定，因此this 指向全局对象。
+		// 在代码中，foo() 是直接使用不带任何修饰的函数引用进行调用的，因此只能使用默认绑定，无法应用其他规则。
+
+
+		// 如果使用严格模式（strict mode），那么全局对象将无法使用默认绑定，因此this 会绑定到undefined：
+		function foo() {
+			"use strict";
+			console.log(this.a);
+		}
+		var a = 2;
+		foo(); // TypeError: this is undefined
+		// 这里有一个微妙但是非常重要的细节，虽然this 的绑定规则完全取决于调用位置，但是只有foo() 运行在非strict mode 下时，默认绑定才能绑定到全局对象；严格模式下与foo()的调用位置无关：
+
+
+
+		// 通常来说你不应该在代码中混合使用strict mode 和non-strict mode。整个程序要么严格要么非严格。然而，有时候你可能会用到第三方库，其严格程度和你的代码有所不同，因此一定要注意这类兼容性细节。
+	</script>
+</body>
+</html>
