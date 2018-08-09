@@ -57,13 +57,25 @@
 		//     });
 		// }
 		// 我们可以通过闭包来解决这一问题：
-		for(var i=0;i<4;i++){
-	      (function(i){
-	          setTimeout(function(){
-	              console.log(i)
-			  })
-		  }(i))
+		// for(var i=0;i<4;i++){
+	 	//    (function(i){
+	 	//        setTimeout(function(){
+	 	//           console.log(i)
+		// 	  })
+		//   }(i))
+		// }
+
+
+		// 闭包效果实例
+		function foo(){
+			var a = 1;
+			function bar(){
+				console.log(a);
+			}
+			return bar;
 		}
+		var mcall = foo();
+		mcall();	//1 这就是闭包效果
 	</script>
 </body>
 </html>

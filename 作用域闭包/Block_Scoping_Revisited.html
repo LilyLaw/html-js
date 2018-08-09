@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>重返块作用域</title>
+</head>
+<body>
+	<script>
+		// 使用IIFE 在每次迭代时都创建一个新的作用域。换句话说，每次迭代我们都需要一个块作用域。可以用 let 声明来劫持块作用域，并且在这个块作用域中声明一个变量。本质上这是将一个块转换成一个可以被关闭的作用域。
+		// 如下代码
+		// for (var i=1; i<=5; i++) {
+		// 	let j = i; // 是的，闭包的块作用域！
+		// 	setTimeout( function timer() {
+		// 		console.log( j );
+		// 	}, j*1000 );
+		// }
+
+		// 但不止于此，for 循环头部的let 声明还会有一个特殊的行为。这个行为指出变量在循环过程中不止被声明一次，每次迭代都会声明。随后的每个迭代都会使用上一个迭代结束时的值来初始化这个变量。
+		for (let i=1; i<=5; i++) {
+			setTimeout( function timer() {
+				console.log( i );
+			}, i*1000 );
+		}
+	</script>
+</body>
+</html>
