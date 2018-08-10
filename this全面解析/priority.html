@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this绑定的优先级</title>
+</head>
+<body>
+	<script>
+		// 默认绑定的优先级是四条规则中最低的
+		// 隐式绑定和显式绑定哪个优先级更高？如下测试代码：
+		/*function foo() {
+			console.log(this.a);
+		}
+		var obj1 = {
+			a: 2,
+			foo: foo
+		};
+		var obj2 = {
+			a: 3,
+			foo: foo
+		};
+		obj1.foo(); // 2
+		obj2.foo(); // 3
+		obj1.foo.call(obj2); // 3
+		obj2.foo.call(obj1); // 2 */
+		// 可以看到，显式绑定优先级更高，也就是说在判断时应当先考虑是否可以应用显式绑定。
+
+
+		// 现在我们需要搞清楚new 绑定和隐式绑定的优先级谁高谁低：
+		// function foo(something) {
+		// 	this.a = something;
+		// }
+		// var obj1 = {
+		// 	foo: foo
+		// };
+		// var obj2 = {};
+		// obj1.foo(2);
+		// console.log(obj1.a); // 2
+		// obj1.foo.call(obj2, 3);		//如果换成 foo.call(obj2,3) 呢？
+		// console.log(obj2.a); // 3
+		// var bar = new obj1.foo(4);
+		// console.log(obj1.a); // 2
+		// console.log(bar.a); // 4
+		// 可以看到new 绑定比隐式绑定优先级高。
+
+		// 但是new 绑定和显式绑定谁的优先级更高呢？ 
+		// 先回忆一下硬绑定是如何工作的。Function.prototype.bind(..) 会创建一个新的包装函数，这个函数会忽略它当前的this 绑定（无论绑定的对象是什么），并把我们提供的对象绑定到this 上。这样看起来硬绑定（也是显式绑定的一种）似乎比new 绑定的优先级更高，无法使用new来控制this 绑定。
+		// 如下代码：
+		function foo(something) {
+			this.a = something;
+		}
+		var obj1 = {};
+		var bar = foo.bind(obj1);
+		bar(2);
+		console.log(obj1.a); // 2
+		var baz = new bar(3);
+		console.log(obj1.a); // 2
+		console.log(baz.a); // 3
+	</script>
+</body>
+</html>
