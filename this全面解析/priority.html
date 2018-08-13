@@ -27,26 +27,26 @@
 
 
 		// 现在我们需要搞清楚new 绑定和隐式绑定的优先级谁高谁低：
-		// function foo(something) {
-		// 	this.a = something;
-		// }
-		// var obj1 = {
-		// 	foo: foo
-		// };
-		// var obj2 = {};
-		// obj1.foo(2);
-		// console.log(obj1.a); // 2
-		// obj1.foo.call(obj2, 3);		//如果换成 foo.call(obj2,3) 呢？
-		// console.log(obj2.a); // 3
-		// var bar = new obj1.foo(4);
-		// console.log(obj1.a); // 2
-		// console.log(bar.a); // 4
+		/*function foo(something) {
+			this.a = something;
+		}
+		var obj1 = {
+			foo: foo
+		};
+		var obj2 = {};
+		obj1.foo(2);
+		console.log(obj1.a); // 2
+		obj1.foo.call(obj2, 3);		//如果换成 foo.call(obj2,3) 呢？
+		console.log(obj2.a); // 3
+		var bar = new obj1.foo(4);
+		console.log(obj1.a); // 2
+		console.log(bar.a); // 4 */
 		// 可以看到new 绑定比隐式绑定优先级高。
 
 		// 但是new 绑定和显式绑定谁的优先级更高呢？ 
 		// 先回忆一下硬绑定是如何工作的。Function.prototype.bind(..) 会创建一个新的包装函数，这个函数会忽略它当前的this 绑定（无论绑定的对象是什么），并把我们提供的对象绑定到this 上。这样看起来硬绑定（也是显式绑定的一种）似乎比new 绑定的优先级更高，无法使用new来控制this 绑定。
 		// 如下代码：
-		function foo(something) {
+		/*function foo(something) {
 			this.a = something;
 		}
 		var obj1 = {};
@@ -55,7 +55,9 @@
 		console.log(obj1.a); // 2
 		var baz = new bar(3);
 		console.log(obj1.a); // 2
-		console.log(baz.a); // 3
+		console.log(baz.a); // 3 */
+		// 出乎意料！ bar 被硬绑定到obj1 上，但是new bar(3) 并没有像我们预计的那样把 obj1.a修改为3。相反，new 修改了硬绑定（到obj1 的）调用bar(..) 中的this。因为使用了new 绑定，我们得到了一个名字为baz 的新对象，并且baz.a 的值是3。
+		// 注意重点是	创造了一个新的对象
 	</script>
 </body>
 </html>

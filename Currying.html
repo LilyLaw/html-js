@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Currying 柯理化</title>
+</head>
+<body>
+	<script>
+		// 在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数,并且返回接受余下的参数且返回结果的新函数的技术。
+
+
+		// 柯里化是指这样一个函数(假设叫做createCurry)，他接收函数A作为参数，运行后能够返回一个新的函数。并且这个新的函数能够处理函数A的剩余参数。
+		// 我们有这样一个场景，记录程序员一个月的加班总时间，那么好，我们首先要做的是记录程序员每天加班的时间，然后把一个月中每天的加班的时间相加，就得到了一个月的加班总时间。
+		// 我们有很多种方法可以实现它，比如最简单的：
+		// var monthTime = 0;
+
+		// function overtime(time) {
+		// 	return monthTime += time;
+		// }
+
+		// overtime(3.5); // 第一天
+		// overtime(4.5); // 第二天
+		// overtime(2.1); // 第三天
+		// //...
+		// console.log(monthTime); // 10.1
+		// 每次传入加班时间都进行累加，这样当然没问题，但你知道，如果数据量很大的情况下，这样会大大牺牲性能。
+
+
+		// 其实我们不必每天都计算加班时间，只需要保存好每天的加班时间，在月底时计算这个月总共的加班时间，所以，其实只需要在月底计算一次就行。
+		var overtime = (function() {
+			var args = [];
+
+			return function() {
+				if (arguments.length === 0) {
+					var time = 0;
+					for (var i = 0, l = args.length; i < l; i++) {
+						time += args[i];
+					}
+					return time;
+				} else {
+					[].push.apply(args, arguments);
+				}
+			}
+		})();
+
+		overtime(3.5); // 第一天
+		overtime(4.5); // 第二天
+		overtime(2.1); // 第三天
+		overtime(3.4); // 第四天
+
+		console.log(overtime()); // 10.1
+	</script>
+</body>
+</html>
