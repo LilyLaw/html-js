@@ -7,6 +7,36 @@
 <body>
 	<script>
 		// 在计算机科学中，柯里化（Currying）是把接受多个参数的函数变换成接受一个单一参数(最初函数的第一个参数)的函数,并且返回接受余下的参数且返回结果的新函数的技术。
+		var currying = function(fn) {
+			// fn 指官员消化老婆的手段
+			var args = [].slice.call(arguments, 1);
+			// args 指的是那个合法老婆
+			return function() {
+				// 已经有的老婆和新搞定的老婆们合成一体，方便控制
+				var newArgs = args.concat([].slice.call(arguments));
+				// 这些老婆们用 fn 这个手段消化利用，完成韦小宝前辈的壮举并返回
+				return fn.apply(null, newArgs);
+			};
+		};
+
+		// 下为官员如何搞定7个老婆的测试
+		// 获得合法老婆
+		var getWife = currying(function() {
+			var allWife = [].slice.call(arguments);
+			console.log(arguments);
+			// allwife 就是所有的老婆的，包括暗渡陈仓进来的老婆
+			console.log(allWife.join(";"));
+		}, "合法老婆");
+
+		// 获得其他6个老婆
+		getWife("大老婆", "小老婆", "俏老婆", "刁蛮老婆", "乖老婆", "送上门老婆");
+
+		// 换一批老婆
+		getWife("超越韦小宝的老婆");
+		// 柯里化有3个常见作用：1. 参数复用；2. 提前返回；3. 延迟计算/运行。
+		
+
+
 
 
 		// 柯里化是指这样一个函数(假设叫做createCurry)，他接收函数A作为参数，运行后能够返回一个新的函数。并且这个新的函数能够处理函数A的剩余参数。
@@ -27,28 +57,28 @@
 
 
 		// 其实我们不必每天都计算加班时间，只需要保存好每天的加班时间，在月底时计算这个月总共的加班时间，所以，其实只需要在月底计算一次就行。
-		var overtime = (function() {
-			var args = [];
+		// var overtime = (function() {
+		// 	var args = [];
 
-			return function() {
-				if (arguments.length === 0) {
-					var time = 0;
-					for (var i = 0, l = args.length; i < l; i++) {
-						time += args[i];
-					}
-					return time;
-				} else {
-					[].push.apply(args, arguments);
-				}
-			}
-		})();
+		// 	return function() {
+		// 		if (arguments.length === 0) {
+		// 			var time = 0;
+		// 			for (var i = 0, l = args.length; i < l; i++) {
+		// 				time += args[i];
+		// 			}
+		// 			return time;
+		// 		} else {
+		// 			[].push.apply(args, arguments);
+		// 		}
+		// 	}
+		// })();
 
-		overtime(3.5); // 第一天
-		overtime(4.5); // 第二天
-		overtime(2.1); // 第三天
-		overtime(3.4); // 第四天
+		// overtime(3.5); // 第一天
+		// overtime(4.5); // 第二天
+		// overtime(2.1); // 第三天
+		// overtime(3.4); // 第四天
 
-		console.log(overtime()); // 10.1
+		// console.log(overtime()); // 10.1
 	</script>
 </body>
 </html>
