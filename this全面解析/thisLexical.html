@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>this 词法</title>
+</head>
+<body>
+	<script>
+		// 我们之前介绍的四条规则已经可以包含所有正常的函数。但是ES6 中介绍了一种无法使用这些规则的特殊函数类型：箭头函数。
+		// 箭头函数并不是使用function 关键字定义的，而是使用被称为“胖箭头”的操作符=> 定义的。箭头函数不使用this 的四种标准规则，而是根据外层（函数或者全局）作用域来决定this。
+
+		// function foo() {
+		// 	// 返回一个箭头函数
+		// 	return (a) => {
+		// 		//this 继承自foo()
+		// 		console.log(this.a);
+		// 	};
+		// }
+		// var obj1 = {
+		// 	a: 2
+		// };
+		// var obj2 = {
+		// 	a: 3
+		// };
+		// var bar = foo.call(obj1);
+		// bar.call(obj2); // 2, 不是3 ！
+		// foo() 内部创建的箭头函数会捕获调用时foo() 的this。由于foo() 的this 绑定到obj1，bar（引用箭头函数）的this 也会绑定到obj1，箭头函数的绑定无法被修改。（new 也不行！）
+
+		// 箭头函数最常用于回调函数中，例如事件处理器或者定时器：
+		// function foo() {
+		// 	setTimeout(() => {
+		// 		// 这里的this 在此法上继承自foo()
+		// 		console.log(this.a);
+		// 	}, 2000);
+		// }
+		// var obj = {
+		// 	a: 2
+		// };
+		// foo.call(obj); // 2
+
+		// 箭头函数可以像bind(..) 一样确保函数的this 被绑定到指定对象，此外，其重要性还体现在它用更常见的词法作用域取代了传统的this 机制。实际上，在ES6 之前我们就已经在使用一种几乎和箭头函数完全一样的模式。
+		function foo() {
+			var self = this; // lexical capture of this
+			setTimeout(function() {
+				console.log(self.a);
+			}, 100);
+		}
+		var obj = {
+			a: 2
+		};
+		foo.call(obj); // 2
+		// 虽然self = this 和箭头函数看起来都可以取代bind(..)，但是从本质上来说，它们想替代的是this 机制。
+
+		// 如果你经常编写this 风格的代码，但是绝大部分时候都会使用self = this 或者箭头函数来否定this 机制，那你或许应当：
+		// 1. 只使用词法作用域并完全抛弃错误this 风格的代码；
+		// 2. 完全采用this 风格，在必要时使用bind(..)，尽量避免使用self = this 和箭头函数。
+	</script>
+</body>
+</html>
