@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>复制对象</title>
+</head>
+<body>
+	<script>
+		/*浅拷贝，同一份引用*/
+		var a = {
+			name:"lily",
+			sex:{
+				one:"one",
+				two:"two"
+			}
+		}
+		var b = a;
+		a.name = "change lily";
+		// console.log(a,b);
+
+
+		/*深拷贝*/
+		var c = JSON.parse(JSON.stringify(a));
+		c.name = "anain change lilu";
+		console.log(a,c);
+		// 注意深拷贝时容易造成死循环，复制时应注意
+
+		var d =Object.assign({},a);		//只复制第一层，不会复制深层
+		d.name = "ahahaha";
+		d.sex.one = "threeeee";
+		console.log(d,a);
+	</script>
+</body>
+</html>
