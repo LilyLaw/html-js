@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>数组</title>
+</head>
+<body>
+	<script>
+		// 数组也支持[]访问形式，有一套更加结构化的值存储机制（不过仍然不限制值的类型）。数组期望的是数值下标，也就是说值存储的位置（通常被称为索引）是整数，比如说0 和42
+		// var myArray = ["foo", 42, "bar"];
+		// console.log(myArray.length); // 3
+		// console.log(myArray[0]); // "foo"
+		// console.log(myArray[2]); // "bar"
+
+		// 数组也是对象，所以虽然每个下标都是整数，你仍然可以给数组添加属性：
+		// var myArray = ["foo", 42, "bar"];
+		// myArray.baz = "baz";
+		// console.log(myArray.length); // 3
+		// console.log(myArray.baz); // "baz"
+		// console.log(myArray);
+
+
+		// 注意：如果你试图向数组添加一个属性，但是属性名“看起来”像一个数字，那它会变成一个数值下标（因此会修改数组的内容而不是添加一个属性）：
+		var myArray = ["foo", 42, "bar"];
+		myArray["2"] = "baz";
+		console.log(myArray.length); // 4
+		console.log(myArray[2]); // "baz"
+		console.log(myArray);
+	</script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>对象内容</title>
+</head>
+<body>
+	<script>
+		// 思考如下代码：
+		// var myObject = {
+		// 	a: 2
+		// };
+		// myObject.a; // 2
+		// myObject["a"]; // 2
+		// 如果要访问myObject中a位置上的值，我们需要使用. 操作符或者[] 操作符。.a 语法通常被称为“属性访问”，["a"]语法通常被称为“键访问”。实际上它们访问的是同一个位置，并且会返回相同的值2，所以这两个术语是可以互换的。
+		// 两种语法的主要区别在于. 操作符要求属性名满足标识符的命名规范，而[".."]语法可以接受任意UTF-8/Unicode字符串作为属性名。
+
+		// 在对象中，属性名永远都是字符串。如果你使用string（字面量）以外的其他值作为属性名，那它首先会被转换为一个字符串。即使是数字也不例外，虽然在数组下标中使用的的确是数字，但是在对象属性名中数字会被转换成字符串，所以当心不要搞混对象和数组中数字的用法：
+
+		// var myob = {};
+		// myob[true] = "hello";
+		// myob["true"] = "trans";
+		// myob[myob] = "ants";
+		// console.log(myob[true]);
+		// console.log(myob[myob]);
+		// console.log(myob["[object Object]"]);
+
+		
+	</script>
+</body>
+</html>
