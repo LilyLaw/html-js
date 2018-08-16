@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>[[Get]]</title>
+</head>
+<body>
+	<script>
+		// 如下代码
+		// var myObject = {
+		// 	a: 2
+		// };
+		// myObject.a; // 2
+		// myObject.a 是一次属性访问，但是这条语句并不仅仅是在myObjet 中查找名字为a的属性，myObject.a在myObject 上实际上是实现了[[Get]]操作（有点像函数调用：[[Get]]()）。对象默认的内置[[Get]] 操作首先在对象中查找是否有名称相同的属性，如果找到就会返回这个属性的值。
+		// 然而，如果没有找到名称相同的属性，按照[[Get]] 算法的定义会执行遍历可能存在的[[Prototype]] 链，也就是原型链
+		// 如果无论如何都没有找到名称相同的属性，那[[Get]] 操作会返回值undefined：
+		var myObject = {
+			a: 2
+		};
+		console.log(myObject.b); // undefined
+
+		// 注意，这种方法和访问变量时是不一样的。如果你引用了一个当前词法作用域中不存在的变量，并不会像对象属性一样返回undefined，而是会抛出一个ReferenceError 异常：
+		console.log(mm);	// Uncaught ReferenceError: mm is not defined
+		// 但仅根据返回值无法判断出到底变量的值为undefined 还是变量不存在，所以[[Get]]操作返回了undefined。
+	</script>
+</body>
+</html>
