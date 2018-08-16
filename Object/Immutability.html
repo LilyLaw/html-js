@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>不变性</title>
+</head>
+<body>
+	<script>
+		// 所有的方法创建的都是浅不变形，也就是说，它们只会影响目标对象和它的直接属性。如果目标对象引用了其他对象（数组、对象、函数，等），其他对象的内容不受影响，仍然是可变的：
+		// myImmutableObject.foo; // [1,2,3]
+		// myImmutableObject.foo.push( 4 );
+		// myImmutableObject.foo; // [1,2,3,4]
+
+		// 对象常量
+		// 对于一个对象常量结合writable:false 和configurable:false 就可以创建一个真正的常量属性（不可修改、重定义或者删除）：
+		// var myObject = {};
+		// Object.defineProperty(myObject, "FAVORITE_NUMBER", {
+		// 	value: 42,
+		// 	writable: false,
+		// 	configurable: false
+		// });
+
+		// 禁止扩展
+		// 对于一个对象若想禁止其扩展其他属性并且保留已有属性， 可以使用Object.preventExtensions(..)：
+		// var myObject = {
+		// 	a: 2
+		// };
+		// Object.preventExtensions(myObject);
+		// myObject.b = 3;
+		// myObject.b; // undefined
+		// console.log(myObject);	//只有属性a
+
+		// 密封
+		// Object.seal(..) 会创建一个“密封”的对象，这个方法实际上会在一个现有对象上调用Object.preventExtensions(..) 并把所有现有属性标记为configurable:false。
+		// 所以，密封之后不仅不能添加新属性，也不能重新配置或者删除任何现有属性（虽然可以修改属性的值）。
+		var myObject = {
+			a:2
+		}
+		Object.seal(myObject);
+		console.log(myObject);	//a:2
+		console.log(Object.getOwnPropertyDescriptor(myObject,"a"));
+		// configurable:false,enumerable:true,value:2,writable:true
+		myObject.a = 8;
+		console.log(myObject);	//a:8
+
+		// 冻结
+		// Object.freeze(..) 会创建一个冻结对象，这个方法实际上会在一个现有对象上调用Object.seal(..)并把所有“数据访问”属性标记为writable:false，这样就无法修改它们的值。
+		// 这个方法是可以应用在对象上的级别最高的不可变性，它会禁止对于对象本身及其任意直接属性的修改（不过这个对象引用的其他对象是不受影响的）。
+		// “深度冻结”一个对象，首先在这个对象上调用Object.freeze(..)，然后遍历它引用的所有对象并在这些对象上调用Object.freeze(..)。但是一定要小心，因为这样做有可能会在无意中冻结其他（共享）对象。
+	</script>
+</body>
+</html>
