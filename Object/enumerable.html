@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>enumerable 枚举</title>
+</head>
+<body>
+	<script>
+		// 可枚举性： “可枚举”就相当于“可以出现在对象属性的遍历中”。
+		// var myObject = {};
+		// Object.defineProperty(
+		// 	myObject,
+		// 	"a",
+		// 	{
+		// 		enumerable: true, // 让a 像普通属性一样可以枚举
+		// 		value: 2
+		// 	}
+		// );
+		// Object.defineProperty(
+		// 	myObject,
+		// 	"b",
+		// 	{
+		// 		enumerable: false, // 让b 不可枚举
+		// 		value: 3
+		// 	}
+		// );
+		// myObject.b; // 3
+		// console.log("b" in myObject); // true
+		// myObject.hasOwnProperty("b"); // true
+		// // 遍历
+		// for (var k in myObject) {	// "a" 2
+		// 	console.log(k, myObject[k]);
+		// }
+
+
+		// 在数组上应用for..in 循环有时会产生出人意料的结果，因为这种枚举不仅会包含所有数值索引，还会包含所有可枚举属性。最好只在对象上应用for..in 循环，如果要遍历数组就使用传统的for 循环来遍历数值索引。
+
+		var arr = ["hh","ee","ff","mm"];
+		for(var k in arr ){
+			console.log(k);
+		}
+		// 0
+		// 1
+		// 2
+		// 3
+
+
+		// 另一种方法检测是否可枚举：
+	</script>
+</body>
+</html>
