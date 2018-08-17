@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Getter 和 Setter</title>
+</head>
+<body>
+	<script>
+		// 在ES5 中可以使用getter 和setter 部分改写默认操作，但是只能应用在单个属性上，无法应用在整个对象上。getter 是一个隐藏函数，会在获取属性值时调用。setter 也是一个隐藏函数，会在设置属性值时调用。
+		// 当你给一个属性定义getter、setter或者两者都有时，这个属性会被定义为“访问描述符”（和“数据描述符”相对）。对于访问描述符来说，JavaScript 会忽略它们的value 和writable 特性，取而代之的是关心set 和get（还有configurable 和enumerable）特性。
+		// 如下代码：
+		// var myObject = {
+		// 	// 给a 定义一个getter
+		// 	get a() {
+		// 		return 2;
+		// 	}
+		// };
+		// Object.defineProperty(
+		// 	myObject, // 目标对象
+		// 	"b", // 属性名
+		// 	{ // 描述符
+		// 		// 给b 设置一个getter
+		// 		get: function() {
+		// 			return this.a * 2
+		// 		},
+		// 		// 确保b 会出现在对象的属性列表中
+		// 		enumerable: true
+		// 	}
+		// );
+		// console.log(myObject);
+		// console.log(myObject.a);
+		// console.log(myObject.b);
+		// 不管是对象文字语法中的get a() { .. }，还是defineProperty(..) 中的显式定义，二者都会在对象中创建一个不包含值的属性，对于这个属性的访问会自动调用一个隐藏函数，它的返回值会被当作属性访问的返回值
+
+		// 如下代码：
+		// var myObject = {
+		// 	// 给 a 定义一个getter
+		// 	get a() {
+		// 		return 2;
+		// 	}
+		// };
+		// myObject.a = 3;
+		// myObject.a; // 2
+		// 由于我们只定义了a的getter，所以对a的值进行设置时set操作会忽略赋值操作，不会抛出错误。而且即便有合法的setter，由于我们自定义的getter 只会返回2，所以set 操作是没有意义的。
+
+		// 为了让属性更合理，还应当定义setter，和你期望的一样，setter 会覆盖单个属性默认的[[Put]]（也被称为赋值）操作。通常来说getter 和setter 是成对出现的（只定义一个的话通常会产生意料之外的行为）：
+		var myObject = {
+			// 给 a 定义一个getter
+			get a() {
+				return this._a_;
+			},
+			// 给 a 定义一个setter
+			set a(val) {
+				this._a_ = val * 2;
+			}
+		};
+		myObject.a = 2;
+		console.log(myObject.a); // 4
+		// 在本例中，实际上我们把赋值（[[Put]]）操作中的值2 存储到了另一个变量 _a_ 中。名称 _a_ 只是一种惯例，没有任何特殊的行为——和其他普通属性一样。
+	</script>
+</body>
+</html>
