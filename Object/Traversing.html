@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Traversing 遍历</title>
+</head>
+<body>
+	<script>
+		// 使用for..in遍历对象是无法直接获取属性值的,因为它实际上遍历的是对象中的所有可枚举属性,你需要手动获取属性值。
+		// var obj = {
+		// 	a:1,
+		// 	b:2,
+		// 	c:3,
+		// 	d:5
+		// }
+		// for(var i in obj){
+		// 	console.log(i,obj[i]);
+		// }
+
+		// 遍历数组下标时采用的是数字顺序（for循环或者其他迭代器），但是遍历对象属性时的顺序是不确定的，在不同的JavaScript引擎中可能不一样。因此，在不同的环境中需要保证一致性时，一定不要相信任何观察到的顺序，它们是不可靠的。
+
+		// ES6增加了一种用来遍历数组的for..of循环语法（如果对象本身定义了迭代器的话也可以遍历对象）可以直接遍历值而不是数组下标
+		var myArray = [4, 8, 6];
+		for (var v of myArray) {
+			console.log(v);
+		}
+		// 4
+		// 8
+		// 6
+	</script>
+</body>
+</html>
