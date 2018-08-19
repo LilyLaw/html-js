@@ -35,10 +35,10 @@
 
 		// 在数组上应用for..in 循环有时会产生出人意料的结果，因为这种枚举不仅会包含所有数值索引，还会包含所有可枚举属性。最好只在对象上应用for..in 循环，如果要遍历数组就使用传统的for 循环来遍历数值索引。
 
-		var arr = ["hh","ee","ff","mm"];
-		for(var k in arr ){
-			console.log(k);
-		}
+		// var arr = ["hh","ee","ff","mm"];
+		// for(var k in arr ){
+		// 	console.log(k);
+		// }
 		// 0
 		// 1
 		// 2
@@ -46,6 +46,32 @@
 
 
 		// 另一种方法检测是否可枚举：
+		var myObject = {};
+		Object.defineProperty(
+			myObject,
+			"a",
+			// 让a 像普通属性一样可以枚举
+			{
+				enumerable: true,
+				value: 2
+			}
+		);
+		Object.defineProperty(
+			myObject,
+			"b",
+			// 让b 不可枚举
+			{
+				enumerable: false,
+				value: 3
+			}
+		);
+		console.log(myObject.propertyIsEnumerable("a")); // true
+		console.log(myObject.propertyIsEnumerable("b")); // false
+		console.log(Object.keys(myObject)); // ["a"]
+		console.log(Object.getOwnPropertyNames(myObject)); // ["a", "b"]
+		// propertyIsEnumerable(..)会检查给定的属性名是否直接存在于对象中（而不是在原型链上）并且满足enumerable:true。
+		// Object.keys(..)会返回一个数组，包含所有可枚举属性，Object.getOwnPropertyNames(..)会返回一个数组，包含所有属性，无论它们是否可枚举。
+		// in 和hasOwnProperty(..) 的区别在于是否查找[[Prototype]] 链，然而，Object.keys(..)和Object.getOwnPropertyNames(..) 都只会查找对象直接包含的属性。
 	</script>
 </body>
 </html>
