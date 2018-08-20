@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>类的建造</title>
+</head>
+<body>
+	<script>
+		// 工厂模式
+		// function person(name,sex,age){
+		// 	var o = new Object();
+		// 	o.name = name;
+		// 	o.sex = sex;
+		// 	o.age = age;
+		// 	o.saymyinfo = function(){
+		// 		console.log(o.name,o.sex,o.age);
+		// 	}
+		// 	return o;
+		// }
+		// var m = person("lily","female","12");
+		// var n = person("jack","male","18");
+		// m.saymyinfo();
+		// n.saymyinfo();
+
+		// 构造函数,以下是伪代码,提供思路：
+		// class CoolGuy {
+		// 	specialTrick = "origin";
+		// 	CoolGuy(trick) {
+		// 		specialTrick = trick
+		// 	}
+		// 	showOff() {
+		// 		output("Here's my trick: ", specialTrick)
+		// 	}
+		// }
+
+		// var me = new CoolGuy("Lily");
+		// me.showOff();
+		// 以下是真正代码：
+		// function CoolGuy(name,sex,age){
+		// 	this.name = name;
+		// 	this.age = age;
+		// 	this.sex = sex;
+
+		// 	this.saymyinfo = function(){
+		// 		console.log(name,sex,age);
+		// 	}
+		// }
+
+		// var m = new CoolGuy("lily","female","22");
+		// m.saymyinfo();
+		// console.log(m instanceof CoolGuy);	//检测对象类型
+
+
+		// 构造模式与工厂模式的区别在于：
+		// 1.没有显示的创建对象
+		// 2.直接将属性和方法赋给了this对象
+		// 3.没有return
+		// 此外，构造函数始终都应该以一个大写字母开头，非构造函数应该以小写字母开头
+
+
+		// 通过构造函数创造新实例，必须使用new操作符，以这种方式调用会经历以下四个步骤
+		// 1. 创建一个新对象
+		// 2. 将构造函数的作用域赋给新对象（使this指向这个对象）
+		// 3. 执行构造函数中的代码（为这个新对象添加属性）
+		// 4. 返回新对象
+
+		// 当需要检测对象类型时，应该使用 instanceof 操作符
+
+		// 注意，构造函数和其他函数的唯一区别，在于调用方式不同，任何函数只要用new操作符调用，就可以视为构造函数；任何函数，如果不是通过new操作符调用的，其实就是普通函数，如下代码：
+		function CoolGuy(name,sex,age){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+
+			this.saymyinfo = function(){
+				console.log(name,sex,age);
+			}
+		}
+		//当做构造函数调用
+		var meone = new CoolGuy("herry","male","17");
+		meone.saymyinfo();
+
+		//当做普通函数调用
+		CoolGuy("global","guess","13");	//添加到window
+		window.saymyinfo();
+
+		//在另一个对象的作用域中调用
+		var o = new Object();
+		CoolGuy.call(o,"Claire","female","22");
+		o.saymyinfo();
+
+	</script>
+</body>
+</html>
