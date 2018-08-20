@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>构造函数的缺点</title>
+</head>
+<body>
+	<script>
+		// 使用构造函数的主要问题，就是每个方法都要在每个实例上重新创建一遍，如下代码
+		// function Person(name,sex,age){
+		// 	this.name = name;
+		// 	this.sex = sex;
+		// 	this.age = age;
+		// 	this.sayMyInfo = function(){
+		// 		console.log(this.name,this.sex,this.age);
+		// 	}
+		// }
+
+		// var Lily = new Person("lily","female","18");
+		// var Bob = new Person("Bob","male","16");
+		// Lily.sayMyInfo();	//lily female 18
+		// Bob.sayMyInfo();	//Bob male 16
+
+		// // Lily 和 Bob 都有一个实例化的对象，两个对象不相等，实例化的后里面的sayMyInfo实例也不相同，如下：
+		// console.log(Lily==Bob);	//false
+		// console.log(Lily.sayMyInfo==Bob.sayMyInfo);	//false
+		//我们可以看出每一个Person实例都有一个sayMyInfo的 Function实例，以这种方式创建函数，会导致不同的作用域链和标识符解析，但创建Function新实例的机制仍然是相同的，但创建两个完全同样任务的实例没有必要，况且有this对象在，根本不用在执行代码前就把函数绑定到特定对象上面，所以可以把函数定义转到构造函数外部来解决这个问题
+
+		function Person(name,sex,age){
+			this.name = name;
+			this.sex = sex;
+			this.age = age;
+			this.sayMyInfo = sayMyInfo;
+		}
+		function sayMyInfo(){
+			console.log(this.name,this.sex,this.age);
+		}
+		var Lily = new Person("lily","female","18");
+		var Bob = new Person("Bob","male","16");
+		Lily.sayMyInfo();	//lily female 18
+		Bob.sayMyInfo();	//Bob male 16
+		console.log(Lily.sayMyInfo == Bob.sayMyInfo);	//true
+		在这个例子中，我们把sayMyInfo的定义转到了构造函数外部，而在构造函数内部，我们将sayMyInfo属性设置成等于全局的sayMyInfo函数。如此一来，
+	</script>
+</body>
+</html>
