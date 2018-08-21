@@ -40,7 +40,9 @@
 		Lily.sayMyInfo();	//lily female 18
 		Bob.sayMyInfo();	//Bob male 16
 		console.log(Lily.sayMyInfo == Bob.sayMyInfo);	//true
-		在这个例子中，我们把sayMyInfo的定义转到了构造函数外部，而在构造函数内部，我们将sayMyInfo属性设置成等于全局的sayMyInfo函数。如此一来，
+		// 在这个例子中，我们把sayMyInfo的定义转到了构造函数外部，而在构造函数内部，我们将sayMyInfo属性设置成等于全局的sayMyInfo函数。如此一来，sayMyInfo包含的是一个指向函数的指针，因此Lily和Bob就共享了在全局作用域中定义的同一个sayMyInfo()函数，这样就解决了两个函数干同一件事的问题
+
+		//可问题随之而来，在全局作用域中调用的函数只能被某个对象调用，让全局作用域名不副实；其次让人无法接受的是，如果多个对象需定义多个方法，那么就需要定义多个全局作用域函数，这样一来我们这个自定义的引用类型就没有丝毫意义可言。
 	</script>
 </body>
 </html>
