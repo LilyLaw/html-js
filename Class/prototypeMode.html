@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型模式</title>
+</head>
+<body>
+	<script>
+		// 我们创建的每一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。
+		// 使用原型对象的好处是可以让所有对象实例共享他所包含的属性和方法。即不必在构造函数中定义对象实例信息，而是将这些信息直接添加到原型对象中
+		// 如下代码
+		function Person(name,sex,age){}
+		Person.prototype.name = "origin";
+		Person.prototype.sex = "male";
+		Person.prototype.age = "13";
+		Person.prototype.sayMyInfo = function(){
+			console.log(this.name,this.sex,this.age);
+		}
+		var m = new Person();
+		var n = new Person();
+		n.sayMyInfo();
+		m.sayMyInfo();
+		console.log(m.name == n.name);	// true
+		console.log(m.sayMyInfo == n.sayMyInfo); //true
+
+
+		//1. 理解原型对象
+		// 创建一个函数，就会为这个函数创建一个prototype属性，这个属性指向这个函数的原型对象。默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。所以Person.prototype.constructor指向Person。而通过这个构造函数，可继续为原型对象添加其他属性和方法。
+	</script>
+</body>
+</html>
