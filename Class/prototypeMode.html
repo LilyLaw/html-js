@@ -6,7 +6,8 @@
 </head>
 <body>
 	<script>
-		// 我们创建的每一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可以由特定类型的所有实例共享的属性和方法。
+		// 此节详细查看 《JavaScript高级程序设计第三版》 6.2.3
+		// 我们创建的每一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可由特定类型的所有实例共享的属性和方法。
 		// 使用原型对象的好处是可以让所有对象实例共享他所包含的属性和方法。即不必在构造函数中定义对象实例信息，而是将这些信息直接添加到原型对象中
 		// 如下代码
 		function Person(name,sex,age){}
@@ -18,15 +19,24 @@
 		}
 		var m = new Person();
 		var n = new Person();
-		n.sayMyInfo();
-		m.sayMyInfo();
-		console.log(m.name == n.name);	// true
-		console.log(m.sayMyInfo == n.sayMyInfo); //true
+		// n.sayMyInfo();
+		// m.sayMyInfo();
+		// console.log(m.name == n.name);	// true
+		// console.log(m.sayMyInfo == n.sayMyInfo); //true
+		// console.log(m);
+		// console.log(n);
+		// console.log(Person.prototype.isPrototypeOf(m));
+		// console.log(Person.prototype.isPrototypeOf(n));
+		console.log(Object.getPrototypeOf(m)==Person.prototype);
+		console.log(Object.getPrototypeOf(m));
 
 
 		//1. 理解原型对象
 		// 创建一个函数，就会为这个函数创建一个prototype属性，这个属性指向这个函数的原型对象。默认情况下，所有原型对象都会自动获得一个constructor（构造函数）属性，这个属性包含一个指向prototype属性所在函数的指针。所以Person.prototype.constructor指向Person。而通过这个构造函数，可继续为原型对象添加其他属性和方法。
-		
+		// 创建了自定义的构造函数之后，其原型对象默认只会取constructor属性；至于其他方法，则都是从Object继承得来。当调用一个构造函数创建新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象，这个链接存在于实例与构造函数的原型对象之间，而不存在于实例与构造函数之间。查看上面的log信息
+		// 判断实例对象和原型对象之间是否存在原型关系，可以通过isPrototypeOf方法来确定对象之间是否存在这种关系，
+		// ES5中增加了一个新方法，Object.getPrototypeOf(),在所支持的视线中，这个方法返回[[Prototype]]的值
+
 	</script>
 </body>
 </html>
