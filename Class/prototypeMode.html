@@ -10,15 +10,15 @@
 		// 我们创建的每一个函数都有一个prototype（原型）属性，这个属性是一个指针，指向一个对象，而这个对象的用途是包含可由特定类型的所有实例共享的属性和方法。
 		// 使用原型对象的好处是可以让所有对象实例共享他所包含的属性和方法。即不必在构造函数中定义对象实例信息，而是将这些信息直接添加到原型对象中
 		// 如下代码
-		function Person(name,sex,age){}
-		Person.prototype.name = "origin";
-		Person.prototype.sex = "male";
-		Person.prototype.age = "13";
-		Person.prototype.sayMyInfo = function(){
-			console.log(this.name,this.sex,this.age);
-		}
-		var m = new Person();
-		var n = new Person();
+		// function Person(name,sex,age){}
+		// Person.prototype.name = "origin";
+		// Person.prototype.sex = "male";
+		// Person.prototype.age = "13";
+		// Person.prototype.sayMyInfo = function(){
+		// 	console.log(this.name,this.sex,this.age);
+		// }
+		// var m = new Person();
+		// var n = new Person();
 		// n.sayMyInfo();
 		// m.sayMyInfo();
 		// console.log(m.name == n.name);	// true
@@ -27,8 +27,8 @@
 		// console.log(n);
 		// console.log(Person.prototype.isPrototypeOf(m));
 		// console.log(Person.prototype.isPrototypeOf(n));
-		console.log(Object.getPrototypeOf(m)==Person.prototype);
-		console.log(Object.getPrototypeOf(m));
+		// console.log(Object.getPrototypeOf(m)==Person.prototype);
+		// console.log(Object.getPrototypeOf(m));
 
 
 		//1. 理解原型对象
@@ -36,6 +36,36 @@
 		// 创建了自定义的构造函数之后，其原型对象默认只会取constructor属性；至于其他方法，则都是从Object继承得来。当调用一个构造函数创建新实例后，该实例的内部将包含一个指针（内部属性），指向构造函数的原型对象，这个链接存在于实例与构造函数的原型对象之间，而不存在于实例与构造函数之间。查看上面的log信息
 		// 判断实例对象和原型对象之间是否存在原型关系，可以通过isPrototypeOf方法来确定对象之间是否存在这种关系，
 		// ES5中增加了一个新方法，Object.getPrototypeOf(),在所支持的视线中，这个方法返回[[Prototype]]的值
+		// 当读取某个对象的某个属性时，会按照原型链查找，先找自身，如果没找到再找原型。而这正是多个对象实例共享原型所保存的属性和方法的基本原理。
+
+		// 注意：可以通过对象实例访问保存在原型中的值，但是却不能通过对象实例重写原型中的值。
+		// 如果在实例中添加了一个属性，而该属性与实例原型中的一个属性同名，会在实例中创建该属性，同时屏蔽掉原型中的这个属性
+
+		// function Animal(){}
+		// Animal.prototype.name = "dog";
+		// Animal.prototype.age = "5";
+		// Animal.prototype.sayName = function(){
+		// 	console.log(this.name);
+		// }
+
+		// var cat = new Animal();
+		// cat.name = "cat";
+		// cat.sayName();	//cat
+		// console.log(Animal.prototype.name);
+
+		// // 可以使用delete删除实例属性，进而访问原型属性
+		// delete cat.name;
+		// console.log(cat.name);	//删除之后接触了对原型属性的屏蔽，所以可以按照原型链访问
+
+		// 使用hasOwnProperty()方法可以检测一个属性是否存在于实例中，还是存在于原型中；这个方法只在给定属性存在于对象实例中时才会返回true。
+		function Car(){}
+		Car.prototype.name ='Lamborghini';
+		Car.prototype.color = "red";
+		var Benz = new Car();
+		Benz.logo = "BMW";
+		console.log(Benz.hasOwnProperty("logo"));	//true
+		console.log(Benz.hasOwnProperty("name"));	//false
+
 
 	</script>
 </body>
