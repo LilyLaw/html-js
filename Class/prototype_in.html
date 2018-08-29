@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型与in操作符</title>
+</head>
+<body>
+	<script>
+		// 有两种方式使用in操作符：for-in循环中使用，单独使用
+		// 在单独使用时，in操作符会在通过对象能够访问给定属性时返回true，无论该属性时存在于原型还是实例中
+		function Person(){}
+		Person.prototype.name = "lily";
+		Person.prototype.age = "18";
+		Person.prototype.sayInfo = function() {
+			console.log(this.name,this.age);
+		};
+		var jack = new Person();
+		jack.tops = 180;
+		console.log("name" in jack);	//true
+		console.log("sayInfo" in jack);	//true
+		console.log("tops" in jack);	//true
+	</script>
+</body>
+</html>
