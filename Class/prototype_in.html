@@ -5,7 +5,7 @@
 	<title>原型与in操作符</title>
 </head>
 <body>
-	<script>
+	<script type="text/javascript">
 		// 有两种方式使用in操作符：for-in循环中使用，单独使用
 		// 在单独使用时，in操作符会在通过对象能够访问给定属性时返回true，无论该属性时存在于原型还是实例中
 		function Person(){}
@@ -19,6 +19,17 @@
 		console.log("name" in jack);	//true
 		console.log("sayInfo" in jack);	//true
 		console.log("tops" in jack);	//true
+		console.log(Object.keys(jack));	// tops
+
+		for(var k in jack){
+			console.log(k);
+		}
+		// tops
+		// name
+		// age
+		// sayInfo
+
+		// 注意以上两种枚举方式的不同
 	</script>
 </body>
 </html>
