@@ -16,23 +16,23 @@
 			}
 		}
 		// 在上面的代码中，我们将 Person.prototype 设置为等于一个以对象字面量形式创建的新对象。最终结果相同，但是会有一个例外，constructor属性不会再指向Person了。之前每创建一个函数，就会同时创建它的prototype对象，这个对象也会自动获得constructor属性。而上面的写法本质上重写了默认的prototype对象，因此constructor属性也就变成了新对象的constructor属性（指向Object构造函数），不再指向Person函数，此时尽管instanceOf操作符还能返回正确结果，但通过constructor已经无法确定对象的类型了。
-		var lilu = new Person();
-		console.log(lilu instanceof Object);
-		console.log(lilu instanceof Person);
-		console.log(lilu.constructor == Object);
-		console.log(lilu.constructor == Person);
+		// var lilu = new Person();
+		// console.log(lilu instanceof Object);
+		// console.log(lilu instanceof Person);
+		// console.log(lilu.constructor == Object);
+		// console.log(lilu.constructor == Person);
 
-		// 如果constructor的值真的很重要，可以特意将它设置回适当的值
-		function Person(){}
-		Person.prototype = {
-			constructor:Person,
-			name:"Lily",
-			age:29,
-			sayInfo : function(){
-				console.log(this.name,this.age);
-			}
-		}
-		注意，以这种方式重设constructor属性会导致它的[[Enumerable]]特性被设置为true。默认情况下，原生的constructor属性是不可枚举的，若要兼容ES5的JavaScript引擎，可以使用 Object.defineProperty();
+		// // 如果constructor的值真的很重要，可以特意将它设置回适当的值
+		// function Person(){}
+		// Person.prototype = {
+		// 	constructor:Person,
+		// 	name:"Lily",
+		// 	age:29,
+		// 	sayInfo : function(){
+		// 		console.log(this.name,this.age);
+		// 	}
+		// }
+		// 注意，以这种方式重设constructor属性会导致它的[[Enumerable]]特性被设置为true。默认情况下，原生的constructor属性是不可枚举的，若要兼容ES5的JavaScript引擎，可以使用 Object.defineProperty();
 		function Person(){}
 		Person.prototype = {
 			name : "tim",

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型的动态性</title>
+</head>
+<body>
+	<script>
+		// 在原型中查找值的过程是一次搜索，因此我们对对象所做的任何修饰都能立即在实例上反映出来，即使是先创建实例后修改对象。
+		// function Person(){}
+		// var m = new Person();
+		// Person.prototype.sayHi = function(){
+		// 	console.log("Hi");
+		// }
+		// m.sayHi();
+		// 以上实例可以实时反映出来的原因是实例与原型之间的松散连接关系。实例与原型之间的是一个指针，而非一个副本，因此可以找到。
+
+		// 注意，如果重写整个原型对象，则会出问题。
+		function Person(){}
+		Person.prototype.sayHi = function(){
+			console.log("Hi");
+		}
+		var m = new Person();
+		m.sayHi();
+		Person.prototype = {
+			sayHello:function(){
+				console.log("hello");
+			}
+		}
+		m.sayHi();
+		m.sayHello();	// Uncaught TypeError: m.sayHello is not a function  报错
+		先创建一个实例，后重写原型，之后再调用m.sayHello()时报错，因为，m指向的原型中不包含以改名称命名的属性，重写原型对象后切断了现有原型和已经存在的实例之间的关系，他们引用的仍是最初的原型。
+	</script>
+</body>
+</html>
