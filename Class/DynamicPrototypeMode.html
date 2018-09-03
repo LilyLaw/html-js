@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>动态原型模式</title>
+</head>
+<body>
+	<script>
+		// 如下代码
+		function Person(name,age,job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+
+			if(typeof this.sayInfo !== "function"){
+				Person.prototype.sayInfo = function(){
+					console.log(this.name,this.age,this.job);
+				}
+			}
+		}
+
+		Person.prototype.sayInfo = function(){
+			console.log("原型有这个函数，不用再次定义");
+		}
+
+		var p1 = new Person("lily",22,"doctor");
+		p1.sayInfo();
+
+		// 注意代码中的判断语句部分，只有在sayInfo函数不存在的情况下才会将它添加到原型中。这段代码只会在初次调用构造函数时才会执行。
+		// 注意，使用动态原型模式时，不能使用对象字面量重写原型，前面已经解释过了，不懂的话回看
+	</script>
+</body>
+</html>
