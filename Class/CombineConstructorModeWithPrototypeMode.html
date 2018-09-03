@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组合使用构造函数模式和原型模式</title>
+</head>
+<body>
+	<script>
+		// 创建自定义类型最常用的方式就是组合使用构造函数模式与原型模式：构造函数模式适用于定义实例属性，原型模式用于定义方法和共享属性。这样每个实例都会有自己的一份实力属性副本，但同时又共享着对方法的引用。最大限度的节省了内存。另外这种混合模式还支持向构造函数传递参数，集两种模式之所长。
+
+		function Person(name,age,job,friend){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.friend = friend;
+		}
+
+		Person.prototype.sayInfo = function(){
+			console.log(this.name,this.age,this.job,this.friend);
+		}
+
+		var p1 = new Person("Lily",22,"engineer",["Tom","Bob"]);
+		var p2 = new Person("jack",33,"Doctor",["Rose","Claire"]);
+		p1.sayInfo();
+		p2.sayInfo();
+
+		p1.friend.push("Mr white");
+		p1.sayInfo();
+		p2.sayInfo();
+
+		// 这种方法是目前使用最广泛，认同度最高的一种创建自定义类型的方法。
+	</script>
+</body>
+</html>
