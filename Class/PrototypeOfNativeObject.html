@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生对象的原型</title>
+</head>
+<body>
+	<script>
+		console.log(Array.prototype);
+		console.log(String.prototype);
+
+		// 通过原生对象的原型，不仅可以取得所有默认方法的引用，也可以定义新的方法。可以像修改自定义原型一样修改原生对象原型。因此可以随时添加方法。
+		// 如下代买
+		String.prototype.startWith = function(text){
+			console.log(this.indexOf(text) == 0);
+		}
+
+		var a = "script of sdfx";
+		a.startWith("script");	//true
+
+		// 尽管可以这样做，不推荐在产品化的代码中修改原生对象的原型。因为如果某个实现中缺少某个方法，就在原生对象的原型中添加这个方法，那么当在另一个支持该方法的实现中运行代码时，可能导致命名冲突。而且这样也会意外地重写原生方法。
+	</script>
+</body>
+</html>
