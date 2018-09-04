@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>稳妥构造函数模式</title>
+</head>
+<body>
+	<script>
+		// 稳妥对象，指的是没有公共属性，而且其方法也不引用this的对象。稳妥对象最适合在一些安全的环境（这些环境会禁止使用this和new），或者在防止数据被其他应用程序改动时使用。稳妥构造函数遵循与寄生构造函数类似的模式，但有两点不同：1. 创建对象的实例方法不引用this；2. 不使用new操作符调用构造函数。
+		// 如下代码：
+		function Person(name,age,job){
+			var a = new Object();
+			a.sayInfo = function(){
+				console.log(name,age,job);
+			}
+			return a;
+		}
+		var a = Person("Jack",15,"student");
+		a.sayInfo();
+		console.log(a instanceof Person);	//false
+		// 变量a中保存的是一个稳妥对象，而且除了调用sayName()方法外，没有别的方式可以访问其数据成员。即使有其他代码会给对象添加数据或方法，也不可能有别的方法传入到构造函数的原始数据。
+
+		// 使用稳妥构造函数模式创建的对象与构造函数之间也没有什么关系，因此instanceof操作符对这种对象也没有意义。
+	</script>
+</body>
+</html>
