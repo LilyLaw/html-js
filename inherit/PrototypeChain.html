@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型链</title>
+</head>
+<body>
+	<script>
+		// 主要通过原型链实现继承
+		function SuperType(){
+			this.property = true;
+		}
+		SuperType.prototype.getSuperValue = function(){
+			console.log(this.property);
+		}
+		function SubType(){
+			this.subProperty = false;
+		}
+		SubType.prototype = new SuperType();
+		SubType.prototype.getSubValue = function(){
+			console.log(this.subProperty);
+		}
+
+		var a = new SubType();
+		a.getSuperValue();
+		a.getSubValue();
+
+		继承的本质是重写原型对象，代之以一个新类型的实例。
+	</script>
+</body>
+</html>
