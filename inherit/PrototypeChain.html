@@ -7,25 +7,76 @@
 <body>
 	<script>
 		// 主要通过原型链实现继承
+		// function SuperType(){
+		// 	this.property = true;
+		// }
+		// SuperType.prototype.getSuperValue = function(){
+		// 	console.log(this.property);
+		// }
+		// function SubType(){
+		// 	this.subProperty = false;
+		// }
+		// SubType.prototype = new SuperType();
+		// SubType.prototype.getSubValue = function(){
+		// 	console.log(this.subProperty);
+		// }
+
+		// var a = new SubType();
+		// a.getSuperValue();
+		// a.getSubValue();
+
+		// 继承的本质是重写原型对象，代之以一个新类型的实例。
+		// a.getSuperValue() 会经历三个搜索步骤，1. 搜索实例，2. 搜索SubType.prototype; 3. 搜索SuperType.prototype
+		// 事实上，前面例子中展示的原型链少了一环：所有引用类型默认都继承了Object，而这个继承也是通过原型链实现的，所以SubType继承了SuperType，SuperType继承了Object。
+
+
+		// 确定原型和实例的关系
+		// 第一种：instanceof
+		// console.log(a instanceof SubType);	// true
+		// console.log(a instanceof SuperType);	// true
+		// console.log(a instanceof Object);	// true
+		// 第二种 isPrototypeOf
+		// console.log(Object.prototype.isPrototypeOf(a));		// true
+		// console.log(SuperType.prototype.isPrototypeOf(a));	// true
+		// console.log(SubType.prototype.isPrototypeOf(a));	// true
+
+		// 需要注意：子类型有时候需要重写超类型中的某个方法，或者需要添加超类型中不存在的某个方法，但不管怎样，给原型添加方法的代码一定要放在替换原型语句之后。
+		// function SuperType(){
+		// 	this.property = true;
+		// }
+		// SuperType.prototype.getSuperValue = function(){
+		// 	console.log(this.property);
+		// }
+		// function SubType(){
+		// 	this.subproperty = false;
+		// }
+		// SubType.prototype = new SuperType();
+		// SubType.prototype.getSubValue = function(){		//添加新方法
+		// 	console.log(this.subproperty);
+		// }
+		// SubType.prototype.getSuperValue = function(){	//重写超类中的方法
+		// 	alert(this.property);
+		// }
+
+		// var b = new SubType();
+		// b.getSuperValue();
+		// b.getSubValue();
+
+		// 注意：重写的方法会屏蔽原来的方法；通过原型链实现继承时，不能使用对象字面量创建原型方法，这样相当于重新定义原型，会切断继承关系
+
+		// 原型链最主要的问题是来自包含引用类型值的原型：包含引用类型值的原型属性会被所有实例共享，这也是为什么要在构造函数中，而不是原型对象中定义属性的原因。
 		function SuperType(){
-			this.property = true;
+			this.color = ["red","blue","green"];
 		}
-		SuperType.prototype.getSuperValue = function(){
-			console.log(this.property);
-		}
-		function SubType(){
-			this.subProperty = false;
-		}
+		function SubType(){}
 		SubType.prototype = new SuperType();
-		SubType.prototype.getSubValue = function(){
-			console.log(this.subProperty);
-		}
-
-		var a = new SubType();
-		a.getSuperValue();
-		a.getSubValue();
-
-		继承的本质是重写原型对象，代之以一个新类型的实例。
+		var c = new SubType();
+		c.color.push("yellow");
+		console.log(c.color);	// ["red", "blue", "green", "yellow"]
+		var d = new SubType();
+		console.log(d.color);	// ["red", "blue", "green", "yellow"]
+		// 原型链第二个问题：在创建子类型的实例时，不能向超类型的构造函数传递参数，实际上应该说是没办法在不影响所有对象实例的情况下给超类型的构造函数传递参数。
+		// 鉴于以上两个问题，很少单独使用原型链
 	</script>
 </body>
 </html>
