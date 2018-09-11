@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>借用构造函数</title>
+</head>
+<body>
+	<script>
+		// 基本思想，在子类型构造函数内部调用超类型的构造函数。不过别忘了，函数只不过是在特定环境中执行代码的对象，因此通过使用call() 和 apply() 也可以在新创建的对象上执行构造函数。
+		// function SuperType(){
+		// 	this.color = ["red","green","blue"];
+		// }
+		// function SubType(){
+		// 	SuperType.call(this);	// 借调超类型构造函数
+		// }
+		// var a = new SubType();
+		// a.color.push("yellow");
+		// var b = new SubType();
+		// console.log(a.color);	// ["red", "green", "blue", "yellow"]
+		// console.log(b.color);	// ["red", "green", "blue"]
+		// 通过使用call()方法或者apply()方法，我们实际上是在（未来将要）新创建的SubType实例的环境下调用了SuperType构造函数，这样一来就会在新SubType对象上执行SuperType()函数中定义所有对象初始化代码。结果每个SubType实例都会有具有自己color属性的副本。
+
+		// 接下来就是传递参数
+		function SuperType(name){
+			this.name = name;
+		}
+		SuperType.prototype.sayInfo = function(){
+			console.log(this.name);
+		}
+		function SubType(){
+			SuperType.call(this,"Lily");
+			this.age = 22;
+		}
+		var b = new SubType();
+		console.log(b.name,b.age);
+		b.sayInfo();	// b.sayInfo is not a function
+		// 在SubType构造函数内部调用SuperType构造函数时，实际上是为SubType的实例设置了name属性，为了确保SuperType构造函数不会重写子类型的属性，可以在调用超类型构造函数后，再添加应该在子类型中定义的属性
+
+		// 借用构造函数的问题，方法都在构造函数中定义，因此函数的复用就无从谈起。而且在超类型的原型中定义的方法，对子类型而言也是不可见的，结果所有类型都只能借用构造函数模式，因此构造函数的技术也是很少单独使用的。
+	</script>
+</body>
+</html>
