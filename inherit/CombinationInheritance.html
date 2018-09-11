@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>组合继承</title>
+</head>
+<body>
+	<script>
+		// 组合继承也叫做伪经典继承，指将原型链和借用构造函数的技术结合在一起，主要思想：通过原型链实现对原型属性和方法的继承，而通过借用构造函数来实现对实例属性的继承，
+
+		function SuperType(name,age,sex){
+			this.name = name;
+			this.age = age;
+			this.sex = sex;
+			this.color = ["black","blue","green"];
+		}
+		SuperType.prototype.sayInfo = function(){
+			console.log(this.name,this.age,this.sex);
+		}
+		function SubType(name,age,sex,job){
+			SuperType.call(this,name,age,sex);
+			this.job = job;
+		}
+		SubType.prototype = new SuperType();	// SuperType 实例赋值给SubType原型，思考这一点。
+		SubType.prototype.sayJob = function(){
+			console.log(this.job);
+		}
+		var a = new SubType("Lily","22","female","engineer");
+		a.sayInfo();	//Lily 22 female
+		a.sayJob();		//engineer
+		a.color.push("red");
+		console.log(a.color);	//["black", "blue", "green", "red"]
+		var b = new SubType("Jack","15","male","doctor");
+		b.sayInfo();
+		b.sayJob();
+		console.log(b.color);	//["black", "blue", "green"]
+
+		// 这种模式是比较常用的继承模式
+	</script>
+</body>
+</html>
