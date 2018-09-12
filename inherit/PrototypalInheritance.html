@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原型式继承</title>
+</head>
+<body>
+	<script>
+		// 原型式继承主要思想：借助原型基于已有对象创建新对象，同时还不必因此创建自定义类型。
+		// function createObj(o){
+		// 	function F(){};
+		// 	F.prototype = o;
+		// 	return new F();
+		// }
+		// // 从本质上讲，createObj()对传入其中的对象进行了一次浅复制,创建副本而已
+		// var p = {
+		// 	name:"Lily",
+		// 	color:["a","b","c"]
+		// }
+		// var c = createObj(p);
+		// console.log(c);
+		// c.color.push("d");
+		// console.log(c.color);	//["a", "b", "c", "d"]
+		// var d = createObj(p);
+		// console.log(d.color);	//["a", "b", "c", "d"]
+
+		// ECMAScript5通过新增Object.create()方法规划了原型继承。这个方法接受两个参数：一个用作新对象原型的对象和一个为新对象定义额外属性的对象（可选）
+		// 在传入一个参数的情况下，Object.create()与createObj()方法的行为相同。
+		var p = {
+			name:"Lily",
+			color:["a","b","c"]
+		}
+		var a = Object.create(p);
+		// console.log(a);
+		a.name = "Claire";
+		a.color.push("d");
+		// console.log(a);
+		// console.log(a.name);	//Claire
+		// console.log(a.__proto__.name);	//Lily
+		// console.log(a.color);	// ["a", "b", "c", "d"]
+		// console.log(a.__proto__.color);	// ["a", "b", "c", "d"]
+
+		var b = Object.create(p);
+		// console.log(b);
+		b.color.push("e");
+		console.log(p.color);	// ["a", "b", "c", "d", "e"]
+	</script>
+</body>
+</html>
