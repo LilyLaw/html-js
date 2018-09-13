@@ -26,24 +26,42 @@
 
 		// ECMAScript5通过新增Object.create()方法规划了原型继承。这个方法接受两个参数：一个用作新对象原型的对象和一个为新对象定义额外属性的对象（可选）
 		// 在传入一个参数的情况下，Object.create()与createObj()方法的行为相同。
+		// var p = {
+		// 	name:"Lily",
+		// 	color:["a","b","c"]
+		// }
+		// var a = Object.create(p);
+		// // console.log(a);
+		// a.name = "Claire";
+		// a.color.push("d");
+		// // console.log(a);
+		// // console.log(a.name);	//Claire
+		// // console.log(a.__proto__.name);	//Lily
+		// // console.log(a.color);	// ["a", "b", "c", "d"]
+		// // console.log(a.__proto__.color);	// ["a", "b", "c", "d"]
+
+		// var b = Object.create(p);
+		// // console.log(b);
+		// b.color.push("e");
+		// console.log(p.color);	// ["a", "b", "c", "d", "e"]
+
+		// Object.create()第二个参数与Object.defineProperties()方法的第二个参数格式相同：每个属性都是通过自己的描述符定义的。以这种方式指定的任何属性都会覆盖原型对象上的同名属性，
 		var p = {
 			name:"Lily",
 			color:["a","b","c"]
 		}
-		var a = Object.create(p);
-		// console.log(a);
-		a.name = "Claire";
-		a.color.push("d");
-		// console.log(a);
-		// console.log(a.name);	//Claire
-		// console.log(a.__proto__.name);	//Lily
-		// console.log(a.color);	// ["a", "b", "c", "d"]
-		// console.log(a.__proto__.color);	// ["a", "b", "c", "d"]
-
-		var b = Object.create(p);
-		// console.log(b);
-		b.color.push("e");
-		console.log(p.color);	// ["a", "b", "c", "d", "e"]
+		// var p1 = {
+		// 	name:"jack"
+		// }
+		// var a = Object.create(p,p1);	// 注意，这样写是错的，Property description must be an object: jack
+		var a = Object.create(p,{
+			name:{		// 注意此处的定义形式。
+				value:"Jack"
+			}
+		})
+		console.log(a);
+		console.log(a.name);
+		console.log(a.__proto__.name);
 	</script>
 </body>
 </html>
