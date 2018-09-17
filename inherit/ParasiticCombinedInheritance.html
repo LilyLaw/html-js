@@ -7,6 +7,35 @@
 <body>
 	<script>
 		// 组合继承最大的问题是任何情况下都会调用两次超类型的构造函数：一次是创建子类型原型的时候，一次是在子类型构造函数内部。如下代码
+		// function SuperType(name){
+		// 	this.name = name;
+		// 	this.color = ["a","b","c"];
+		// }
+		// SuperType.prototype.sayInfo = function(){
+		// 	console.log(this.name,this.color);
+		// }
+		// function SubType(name,age){
+		// 	SuperType.call(this,name);	// 第二次调用SuperType()
+		// 	this.age = age;
+		// }
+		// SubType.prototype = new SuperType();	// 第一次调用SuperType()
+		// SubType.prototype.constructor = SubType;
+		// SubType.prototype.sayAge = function(){
+		// 	console.log(this.age);
+		// }
+
+		// var c = new SubType();
+		// console.log(c);
+		// 在第一次调用构造函数时，SubType.prototype会得到两个属性：name和color；他们都是SuperType的实例属性，只不过位于SubType的原型中。当调用SubType的构造函数时，又会调用一次SuperType构造函数，这一次又在新对象上创建了实例属性name和color，于是这两个属性就屏蔽了原型中的两个同名属性。
+		// c 有两组name和color属性，一组在实例上，一组在SubType原型中，这就是调用两次SuperType构造函数的结果。
+		// 为了解决以上问题，使用寄生组合式继承。
+		// 所谓寄生组合式继承，即通过构造函数来继承属性，通过原型链的混成形式来继承方法。其背后基本思路是：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的无非是超类型的一个副本而已。本质上就是使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型。
+		function inheritPrototype(subType,superType){
+			var prototype = Object.create(superType.prototype);	//创建超类型原型的副本
+			prototype.constructor = subType;				//为创建的副本添加constructor属性,从而弥补因重写原型而是去的默认constructor属性。
+			subType.prototype = prototype;					//将新创建的对象赋值给子类型的原型。
+		}
+		// 可以通过调用inheritPrototype()函数的语句，去替换前面例子中为子类型原型赋值的语句。
 		function SuperType(name){
 			this.name = name;
 			this.color = ["a","b","c"];
@@ -15,26 +44,19 @@
 			console.log(this.name,this.color);
 		}
 		function SubType(name,age){
-			SuperType.call(this,name);	// 第二次调用SuperType()
+			SuperType.call(this,name);
 			this.age = age;
 		}
-		SubType.prototype = new SuperType();	// 第一次调用SuperType()
-		SubType.prototype.constructor = SubType;
+		inheritPrototype(SubType,SuperType);
 		SubType.prototype.sayAge = function(){
 			console.log(this.age);
 		}
 
-		var c = new SubType();
-		console.log(c);
-		// 在第一次调用构造函数时，SubType.prototype会得到两个属性：name和color；他们都是SuperType的实例属性，只不过位于SubType的原型中。当调用SubType的构造函数时，又会调用一次SuperType构造函数，这一次又在新对象上创建了实例属性name和color，于是这两个属性就屏蔽了原型中的两个同名属性。
-		// c 有两组name和color属性，一组在实例上，一组在SubType原型中，这就是调用两次SuperType构造函数的结果。
-		// 为了解决以上问题，使用寄生组合式继承。
-		// 所谓寄生组合式继承，即通过构造函数来继承属性，通过原型链的混成形式来继承方法。其背后基本思路是：不必为了指定子类型的原型而调用超类型的构造函数，我们所需要的无非是超类型的一个副本而已。本质上就是使用寄生式继承来继承超类型的原型，然后再将结果指定给子类型的原型。
-		function inheritPrototype(subType,superType){
-			var prototype = object(superType.prototype);	//创建超类型原型的副本
-			prototype.constructor = subType;				//为创建的副本添加constructor属性,从而弥补因重写原型而是去的默认constructor属性。
-			subType.prototype = prototype;					//将新创建的对象赋值给子类型的原型。
-		}
+		var m = new SubType("Ku",33);
+		console.log(m);		// 查看控制台，注意prototype链
+
+		// 这个例子的高效率体现在他只调用了一次SuperType构造函数，并且因此避免了在SubType.prototype上面创建不必要的多余的属性。与此同时，原型链还能保持不变。
+		// 寄生组合式继承是引用类型最理想的继承范式。
 	</script>
 </body>
 </html>
