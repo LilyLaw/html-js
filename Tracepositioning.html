@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>描点跳转</title>
+	<script type="text/javascript" src="jquery-1.8.0.min.js"></script>
+</head>
+<body>
+	<!-- <section>
+		<h2 >第一种方式，a标签href 描点定位：href内容为标签id</h2>
+		<a href="#testid">点击我到testid</a>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<p id="testid">我的id是  testid</p>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt=""> 
+	</section> -->
+
+	<!-- <section>
+		<h2>第二种方式，使用jquery函数 animate</h2>
+		<!-- <a href="" class="totidt">点击我到testidtwo</a> 此处不能使用a标签 -->
+		<!-- <p class="totidt">点击我到testidtwo</p>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<p id="testidtwo">我的id是 testidtwo</p>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+	</section>
+	<script type="text/javascript">
+		$(".totidt").click(function(){
+			var thistop = $("#testidtwo").offset().top;
+			console.log(thistop);
+			$("body,html").animate({
+				scrollTop:thistop
+			});
+		});
+	</script> -->
+
+	<section>
+		<h2>第三种方法，原生js</h2>
+		<p class="totidth" onclick="totidth()">点击我到testidthree</p>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<p id="testidthree">我的id是testidthree</p>
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+		<img src="img/15.jpg" alt="">
+	</section>
+	<script type="text/javascript">
+		function totidth(){
+			document.getElementById("testidthree").scrollIntoView();
+		}
+	</script>
+</body>
+</html>
