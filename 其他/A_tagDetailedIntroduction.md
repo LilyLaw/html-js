@@ -29,10 +29,10 @@ a标签详细介绍
 	 
 #### 调用js代码  
 
-``` html?linenums
+``` html
 	<a href="javascript:js_method();"></a>
 ```
-	 这种方法在传递this等参数的时候很容易出问题，而且javascript:协议作为a的href属性值时不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放，==W3C标准不推荐在href里面执行JavaScript语句==。
+这种方法在传递this等参数的时候很容易出问题，而且javascript:协议作为a的href属性值时不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放，==W3C标准不推荐在href里面执行JavaScript语句==。
 	 
 	 
 
