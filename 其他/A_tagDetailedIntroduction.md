@@ -1,5 +1,4 @@
----
-title: a标签详细介绍
+a标签详细介绍
 ---
 
 介绍a标签的以下属性，根据属性展开
@@ -19,7 +18,7 @@ title: a标签详细介绍
 	<a href="#">点击我回到顶部</a>
 </div>
 ```
-----------
+
 #### href="URL"
  1. 绝对URL
 	 可以指向另一个站点如 href="http://www.baidu.com", 点击时会直接跳到改页面。
@@ -27,6 +26,13 @@ title: a标签详细介绍
 	 指向站点内的某个链接，如 href = "index.html"。 
  3. 锚URL
 	 此时指向页面中的锚，比如href="#top"，那么点击时就会跳转到当前页面id=“top”这个锚点。
+	 
+#### 调用js代码
+   
+
+``` html?linenums
+<a href="javascript:js_method();"></a>
+```
 
 	 
 
