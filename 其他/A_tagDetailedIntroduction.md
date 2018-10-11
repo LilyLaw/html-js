@@ -28,11 +28,47 @@ a标签详细介绍
 	 此时指向页面中的锚，比如href="#top"，那么点击时就会跳转到当前页面id=“top”这个锚点。
 	 
 #### 调用js代码  
+ 1.
+``` html
+	<a href="javascript:js_method();">click me</a>
+```
+这种方法在传递this等参数的时候很容易出问题，而且javascript:协议作为a的href属性值时不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放，***W3C标准不推荐在href里面执行JavaScript语句*** 。
+
+2. 
 
 ``` html
-	<a href="javascript:js_method();"></a>
+	<a href="javascript:void(0)" onclick="js_method();">click me</a>
 ```
-这种方法在传递this等参数的时候很容易出问题，而且javascript:协议作为a的href属性值时不仅会导致不必要的触发window.onbeforeunload事件，在IE里面更会使gif动画图片停止播放，==W3C标准不推荐在href里面执行JavaScript语句==。
+这是最常用的方法，也是最周全的方法，onclick方法负责执行js函数，而void是一个操作符，void(0)返回undefined，地址不发生跳转。而且这种方法不会像第一种方法一样直接将js方法暴露在浏览器的状态栏。
+
+3. 
+
+``` html
+	<a href="javascript:;" onclick="js_method();">click me</a>
+```
+这种方法跟跟2种类似，区别只是执行了一条空的js代码。 ***推荐使用***
+
+4. 
+
+``` html
+	<a href="#" onclick="js_method();"></a>
+```
+
+#是标签内置的一个方法，代表top的作用。所以用这种方法点击后网页后返回到页面的最顶端。
+
+5. 
+
+``` html
+	<a href="#" onclick="js_method();return false;"></a>
+```
+这种方法点击执行了js函数后return false，页面不发生跳转，执行后还是在页面的当前位置。
+
+
+
+       
+
+
+
 	 
 	 
 
