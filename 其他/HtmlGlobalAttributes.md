@@ -148,6 +148,115 @@ data-* 属性包括两部分:
 ```
 
 展示效果如下所示，自己思考
+![dir展示效果](https://github.com/LilyLaw/html_js_training/blob/master/img/dir.png?raw=true)
 
+----------
 
- 
+### draggable
+
+> 规定元素是否可拖动。
+
+实现拖动如下代码
+
+``` html
+	<!DOCTYPE html>
+	<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>drag</title>
+		<style>
+			#divone, #divtwo {
+				float: left;
+				margin-right: 10px;
+				width: 300px;
+				height: 120px;
+				line-height: 120px;
+				text-align: center;
+				border: 1px solid #808080;
+			}
+			p {
+				vertical-align: middle;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="divone" ondrop="dragEnd(event)" ondragover="dragging(event)">
+			<p draggable="true" id="dragP" ondragstart="dragStart(event)">abcdefghijklmn</p>
+		</div>
+
+		<div id="divtwo" ondrop="dragEnd(event)" ondragover="dragging(event)"></div>
+
+		<script type="text/javascript">
+			// 开始拖动
+			function dragStart(ev){
+				ev.dataTransfer.setData("Text",ev.target.id);
+			}
+
+			// 拖动中
+			function dragging(ev){
+				//去除浏览器对数据的默认处理
+				ev.preventDefault();
+			}
+
+			// 拖放结束（放置）
+			function dragEnd(ev){
+				ev.preventDefault();
+				var data = ev.dataTransfer.getData("Text");
+				ev.target.appendChild(document.getElementById(data));
+			}
+		</script>
+	</body>
+	</html>
+```
+```具体的html拖放行为查看 drag.md 文件```
+
+----------
+
+### hidden
+
+> hidden属性是布尔属性
+> 浏览器不应该显示已规定hidden属性的元素
+
+代码如下
+``` html
+	<div hidden="hidden">这是被隐藏的元素</div>
+	<p>这是没有被隐藏的属性</p>
+```
+
+----------
+
+### lang
+
+> lang 属性规定元素内容的语言。
+> lang 属性在以下标签中无效```<base>```，```<br>```，```<frame>```，```<frameset>```，```<hr>```，```<iframe>```，```<frame>```，```<script>```
+
+如下代码
+``` html
+	<p lang="fr">Ceci est un paragraphe.</p>
+```
+[语言代码](http://www.w3school.com.cn/tags/html_ref_language_codes.asp)
+
+----------
+
+### spellcheck
+
+> spellcheck 属性规定是否对元素进行拼写和语法检查：1. input 元素中的文本值；2. textarea元素中的文本；3. 可编辑元素中的文本。
+
+```<p contenteditable="true" spellcheck="true">这是一个段落。</p>```
+
+**这个属性很鸡肋，我没试出效果来**
+
+----------
+
+### title
+
+> title 属性规定关于元素的额外信息。通常会在鼠标移动到元素上时显示一段工具提示文本。
+
+如下代码
+
+``` html
+	<abbr title="People's Republic of China">PRC</abbr> was founded in 1949.
+	<p title="Free Web tutorials">W3School.com.cn</p>
+	<a href="http://www.baidu.com" title="百度官网">baidu</a>
+```
+**注意** title 属性常与 form 以及 a 元素一同使用，以提供关于输入格式和链接目标的信息。同时*它也是 abbr 和 acronym 元素的必需属性。*
