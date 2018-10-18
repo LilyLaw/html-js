@@ -69,4 +69,32 @@ HTML5中规定元素可拖动。
 所以上面的对图像处理的代码可以这样写：
 ``` html
 	<img id="drag1" src="15.jpg" ondragstart="drag(event)" style="width:200px;height:auto;">
+``` 
+2. 开始拖动
+	当开始拖动时，触发ondragstart事件，调用drag()，它规定了被拖动的数据。
+	dataTransfer.serData()方法设置被拖数据的数据类型和值。
+``` javascript
+	function drag(ev) {
+		ev.dataTransfer.setData("Text", ev.target.id);
+	}
 ```
+> 在这个例子中，数据类型是 "Text"，值是可拖动元素的 id ("drag1")。
+
+3. 放置
+	ondragover规定在何处放置被拖动的数据。
+	默认无法将数据或元素放到其他元素中，如果需要设置允许放置，必须阻止对元素的默认处理方式。
+``` javascript
+	event.preventDefault();
+```
+当放置被拖动数据时，会发生drop事件。
+``` javascript
+	function drop(ev) {
+		ev.preventDefault();
+		var data = ev.dataTransfer.getData("Text");
+		ev.target.appendChild(document.getElementById(data));
+	}
+```
+> 调用 preventDefault() 来避免浏览器对数据的默认处理（drop 事件的默认行为是以链接形式打开）
+> 通过dataTransfer.getData("Text")方法获得被拖的数据。该方法将返回在setData()方法中设置的为相同类型的任何数据。
+> 被拖数据是被拖元素的id
+> 把被拖元素放置到放置元素（目标元素）中。
