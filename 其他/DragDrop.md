@@ -71,8 +71,7 @@ HTML5中规定元素可拖动。
 	<img id="drag1" src="15.jpg" ondragstart="drag(event)" style="width:200px;height:auto;">
 ``` 
 2. 开始拖动
-	当开始拖动时，触发ondragstart事件，调用drag()，它规定了被拖动的数据。
-	dataTransfer.serData()方法设置被拖数据的数据类型和值。
+	当开始拖动时，触发ondragstart事件，调用drag()，它规定了被拖动的数据。[dataTransfer](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/dataTransfer.md).serData()方法设置被拖数据的数据类型和值。
 ``` javascript
 	function drag(ev) {
 		ev.dataTransfer.setData("Text", ev.target.id);
