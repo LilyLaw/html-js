@@ -6,7 +6,7 @@
 ### 事件句柄（Event Handlers）
 
  - onabort 图像的加载被中断
-``` html
+``` html?linenums
 	<img src="https://github.com/LilyLaw/html_js_training/blob/master/img/15.jpg?raw=true" onabort="abortImage()" />
     <script type="text/javascript">
         function abortImage() {
@@ -36,7 +36,7 @@ radio, reset, submit, text, textarea, window
 	 > fileUpload, select, text, textarea
 	 
 	 代码实例：
-``` html
+``` html?linenums
 	<input type="text" onchange="logme(event);">
     <script type="text/javascript">
         function logme(event) {
@@ -53,7 +53,7 @@ radio, reset, submit, text, textarea, window
 	 双击后才发生。
 	 
 	 代码实例：
-``` html
+``` html?linenums
 	<input type="text" ondblclick="logme(event);">
     <script type="text/javascript">
         function logme(event) {
@@ -68,7 +68,7 @@ radio, reset, submit, text, textarea, window
 	 
 	 支持该事件的JavaScript对象：
 	 > window, image
-``` html
+``` html?linenums
 	<img src="sdfjsdfjsdf.jpg" alt="" onerror="logerror();">
     <script>
         function logerror(){
@@ -90,7 +90,6 @@ radio, reset, submit, text, textarea, window
 	> button, checkbox, fileUpload, layer, frame, password, radio, reset, select, submit, text, textarea, window
 
  - onkeydown 某个键盘按键被按下
-	 在用户按下一个键盘按键时发生。
 	 
 	 支持该事件的html标签：
 	 > ```<a>```， ```<acronym>```， ```<address>```， ```<area>```， ```<b>```， ```<bdo>```， ```<big>```， ```<blockquote>```， ```<body>```，```<button>```， ```<caption>```， ```<cite>```， ```<code>```， ```<dd>```， ```<del>```， ```<dfn>```， ```<div>```， ```<dt>```， ```<em>```，```<fieldset>```， ```<form>```， ```<h1>```  to  ```<h6>```， ```<hr>```， ```<i>```， ```<input>```，```<kbd>```， ```<label>```， ```<legend>```，```<li>```， ```<map>```， ```<object>```， ```<ol>```， ```<p>```，```<pre>```，```<q>```， ```<samp>```， ```<select>```， ```<small>```，```<span>```， ```<strong>```， ```<sub>```，```<sup>```， ```<table>```， ```<tbody>```，```<td>```，```<textarea>```，```<tfoot>```，```<th>```，```<thead>```，```<tr>```，```<tt>```，```<ul>```，```<var>```
@@ -99,7 +98,7 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html
+``` html?linenums
 	<input type="text" onkeydown="loginfo(event)">
     <script>
         function loginfo(e){
@@ -115,7 +114,7 @@ radio, reset, submit, text, textarea, window
 	> document, image, link, textarea
 	
 	代码实例：
-``` html
+``` html?linenums
 	<input type="text" onkeypress="loginfo(event)">
     <script>
         function loginfo(e){
@@ -125,7 +124,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onkeyup 某个键盘按键被松开
-	 事件会在键盘按键被松开时发生。
 	 
 	 支持该事件的html标签:
 	 > ```<a>```, ```<acronym>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```,```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<del>```, ```<dfn>```, ```<div>```, ```<dt>```, ```<em>```,```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```,```<li>```, ```<map>```, ```<object>```, ```<ol>```, ```<p>```, ```<pre>```, ```<q>```, ```<samp>```, ```<select>```, ```<small>```,```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```,```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -134,7 +132,7 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html
+``` html?linenums
 	<input type="text" onkeyup="loginfo(event)">
     <script>
         function loginfo(e){
@@ -144,7 +142,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onload 一张页面或一幅图像加载完成
-	事件会在页面或图像加载完成后立即发生。
 	
 	支持该事件的html标签：
 	> ```<body>```，```<frame>```，```<frameset>```，```<iframe>```，```<img>```，```<link>```，```<script>```
@@ -153,7 +150,7 @@ radio, reset, submit, text, textarea, window
 	> image, layer, window
 
 	代码实例：
-``` html
+``` html?linenums
 	<html>
 	<head>
 		<title></title>
@@ -174,7 +171,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onmousedown 鼠标按钮被按下
-	事件会在鼠标按键被按下时发生。
 	
 	支持该事件的html标签：
 	> ```<a>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<dfn>```, ```<div>```, ```<dl>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<img>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<map>```, ```<ol>```, ```<p>```, ```<pre>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```, ```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -183,7 +179,7 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-``` html
+``` html?linenums
 	<img src="15.jpg" alt="" onmousedown="loginfo(event);">
     <script>
         function loginfo(e){
@@ -194,7 +190,6 @@ radio, reset, submit, text, textarea, window
    **注意** 鼠标左右键点击都可以触发此事件
    
  - onmouseup 鼠标按键被松开
-	事件会在鼠标按键被松开时发生。
 	
 	支持该事件的html标签：
 	> ```<a>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<dfn>```, ```<div>```, ```<dl>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<img>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<map>```, ```<ol>```, ```<p>```, ```<pre>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```, ```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -203,7 +198,7 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-```html
+```html?linenums
 	<img src="15.jpg" alt="" onmouseup="loginfo(event);">
     <script>
         function loginfo(e){
@@ -223,7 +218,7 @@ radio, reset, submit, text, textarea, window
 因为鼠标移动非常频繁。
    
    代码实例：
-``` html
+``` html?linenums
 	<img src="15.jpg" alt="" onmousemove="loginfo(event);">
     <script>
         function loginfo(e){
@@ -235,7 +230,6 @@ radio, reset, submit, text, textarea, window
    **注意：**每当用户鼠标移动一个像素就会发生一个mousemove事件，这会耗费系统资源去处理所有这些mousemove事件，因此应谨慎地使用该事件。
    
  - onmouseout 鼠标指针从元素上移开
-	事件会在鼠标指针移出指定的对象时发生。
 	
 	支持该事件的html标签：
 	> ```<a>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<dfn>```, ```<div>```, ```<dl>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<img>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<map>```, ```<ol>```, ```<p>```, ```<pre>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```, ```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -244,7 +238,7 @@ radio, reset, submit, text, textarea, window
 	> layer，link
 	
 	代码实例：
-``` html
+``` html?linenums
 	<img src="15.jpg" alt="" onmouseout="loginfo(event);" style="width:400px;height:auto;">
     <script>
         function loginfo(e){
@@ -254,7 +248,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onmouseover 鼠标移到某元素之上
-	事件会在鼠标指针移动到指定的对象上时发生。
 	
 	支持该事件的html 标签：
 	>  ```<a>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<dfn>```, ```<div>```, ```<dl>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<img>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<map>```, ```<ol>```, ```<p>```, ```<pre>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```, ```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -263,7 +256,7 @@ radio, reset, submit, text, textarea, window
 	> layer, link
 	
 	代码实例：
-``` html
+``` html?linenums
 	<img src="15.jpg" alt="" onmouseover="loginfo(event);" style="width:400px;height:auto;">
     <script>
         function loginfo(e){
@@ -273,7 +266,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onreset	重置按钮被点击
-	事件会在表单中的重置按钮被点击时发生。
 	
 	支持该事件的html标签：
 	> ```<form>```
@@ -282,7 +274,7 @@ radio, reset, submit, text, textarea, window
 	> form
 
 	代码实例：
-``` html
+``` html?linenums
 	<form action="" onreset="resetform(event);">
         姓名：<input type="text" name="name" value="LilyLaw">
         性别：<input type="radio" name="sex" checked="checked" value="female"> female <br/>
@@ -297,7 +289,6 @@ radio, reset, submit, text, textarea, window
 ```
 
  - onresize 窗口或框架重新被调整大小
-	事件会在窗口或框架被调整大小时发生。
 	
 	支持该事件的html标签：
 	> ```<a>```, ```<address>```, ```<b>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<cite>```, ```<code>```, ```<dd>```, ```<dfn>```, ```<div>```, ```<dl>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<frame>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<img>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<object>```, ```<ol>```, ```<p>```, ```<pre>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<textarea>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -306,7 +297,7 @@ radio, reset, submit, text, textarea, window
 	> window
 
 	代码实例：
-``` html
+``` html?linenums
 	<div onresize="divresize(event)">sdfsdfsdfsdfs</div>
     <script>
         function divresize(){
@@ -317,3 +308,55 @@ radio, reset, submit, text, textarea, window
         }
     </script>
 ```
+
+ - onselect 文本被选中
+
+	支持该事件的html标签：
+	> ```<input type="text">```, ```<textarea>```
+
+	支持该事件的JavaScript对象：
+	> window
+
+	**注意** 我目前没找到获取选中内容的方法
+	
+ - onsubmit 确认按钮被点击
+ 
+	 支持该事件的html标签:
+	 > ```<form>```
+
+	支持该事件的JavaScript对象：
+	> form	
+
+	``` html?linenums
+		<form action="######" method="get" name="myform" onsubmit="return submitform(event);">
+			<input type="text" name="name">
+			<input type="text" name="sex">
+			<input type="text" name="age">
+
+			<input type="submit" value="submit">
+		</form>
+
+		<script>
+			function submitform(e){
+				console.log(e);
+				return false;
+			}
+		</script>
+	```
+	
+ - onunload 用户退出页面
+	
+	支持该事件的html标签：
+	> ```<body>```，```<frameset>```
+
+	支持该事件的JavaScript对象：
+	> window
+
+	代码实例：
+	IE下起作用，其他不管用
+``` html?linenums
+	<body onbeforeunload = "return 'are you sure to close this tab???';">
+	</body>
+```
+
+   **注意** Chrome，Firefox 试了很多种方法都不管用，心累，日他妈的，记得把这个问题解决哦！！！
