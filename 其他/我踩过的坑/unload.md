@@ -3,7 +3,7 @@
 具体问题如下：
 #### 1. onunload 事件无法 阻断 任何浏览器关闭页面的操作
 代码1：
-``` html?linenums
+``` html
 	<html>
 	<head>
 		<title></title>
@@ -13,7 +13,7 @@
 	</html>
 ```
 代码2：
-``` html?linenums
+``` html
 	<html>
 	<head>
 		<title></title>
@@ -32,7 +32,7 @@
 
 2  3 问题 代码如下
 代码3：
-``` html?linenums
+``` html
 	<html>
 	<head>
 		<title></title>
@@ -78,5 +78,6 @@
 	 意思就是即使报错了，这个页面继续卸载。
 	 
  **所以尼玛unload这东西到底有啥用呢？？？反正页面最后也得关  ヽ(。_°)ノ**
+ 
  
  
