@@ -6,7 +6,7 @@
 ### 事件句柄（Event Handlers）
 
  - onabort 图像的加载被中断
-``` html?linenums
+``` html
 	<img src="https://github.com/LilyLaw/html_js_training/blob/master/img/15.jpg?raw=true" onabort="abortImage()" />
     <script type="text/javascript">
         function abortImage() {
@@ -36,7 +36,7 @@ radio, reset, submit, text, textarea, window
 	 > fileUpload, select, text, textarea
 	 
 	 代码实例：
-``` html?linenums
+``` html
 	<input type="text" onchange="logme(event);">
     <script type="text/javascript">
         function logme(event) {
@@ -53,7 +53,7 @@ radio, reset, submit, text, textarea, window
 	 双击后才发生。
 	 
 	 代码实例：
-``` html?linenums
+``` html
 	<input type="text" ondblclick="logme(event);">
     <script type="text/javascript">
         function logme(event) {
@@ -68,7 +68,7 @@ radio, reset, submit, text, textarea, window
 	 
 	 支持该事件的JavaScript对象：
 	 > window, image
-``` html?linenums
+``` html
 	<img src="sdfjsdfjsdf.jpg" alt="" onerror="logerror();">
     <script>
         function logerror(){
@@ -98,7 +98,7 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html?linenums
+``` html
 	<input type="text" onkeydown="loginfo(event)">
     <script>
         function loginfo(e){
@@ -114,7 +114,7 @@ radio, reset, submit, text, textarea, window
 	> document, image, link, textarea
 	
 	代码实例：
-``` html?linenums
+``` html
 	<input type="text" onkeypress="loginfo(event)">
     <script>
         function loginfo(e){
@@ -132,7 +132,7 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html?linenums
+``` html
 	<input type="text" onkeyup="loginfo(event)">
     <script>
         function loginfo(e){
@@ -150,7 +150,7 @@ radio, reset, submit, text, textarea, window
 	> image, layer, window
 
 	代码实例：
-``` html?linenums
+``` html
 	<html>
 	<head>
 		<title></title>
@@ -179,7 +179,7 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-``` html?linenums
+``` html
 	<img src="15.jpg" alt="" onmousedown="loginfo(event);">
     <script>
         function loginfo(e){
@@ -198,7 +198,7 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-```html?linenums
+```html
 	<img src="15.jpg" alt="" onmouseup="loginfo(event);">
     <script>
         function loginfo(e){
@@ -218,7 +218,7 @@ radio, reset, submit, text, textarea, window
 因为鼠标移动非常频繁。
    
    代码实例：
-``` html?linenums
+``` html
 	<img src="15.jpg" alt="" onmousemove="loginfo(event);">
     <script>
         function loginfo(e){
@@ -238,7 +238,7 @@ radio, reset, submit, text, textarea, window
 	> layer，link
 	
 	代码实例：
-``` html?linenums
+``` html
 	<img src="15.jpg" alt="" onmouseout="loginfo(event);" style="width:400px;height:auto;">
     <script>
         function loginfo(e){
@@ -256,7 +256,7 @@ radio, reset, submit, text, textarea, window
 	> layer, link
 	
 	代码实例：
-``` html?linenums
+``` html
 	<img src="15.jpg" alt="" onmouseover="loginfo(event);" style="width:400px;height:auto;">
     <script>
         function loginfo(e){
@@ -274,7 +274,7 @@ radio, reset, submit, text, textarea, window
 	> form
 
 	代码实例：
-``` html?linenums
+``` html
 	<form action="" onreset="resetform(event);">
         姓名：<input type="text" name="name" value="LilyLaw">
         性别：<input type="radio" name="sex" checked="checked" value="female"> female <br/>
@@ -297,7 +297,7 @@ radio, reset, submit, text, textarea, window
 	> window
 
 	代码实例：
-``` html?linenums
+``` html
 	<div onresize="divresize(event)">sdfsdfsdfsdfs</div>
     <script>
         function divresize(){
@@ -327,7 +327,7 @@ radio, reset, submit, text, textarea, window
 	支持该事件的JavaScript对象：
 	> form	
 
-	``` html?linenums
+	``` html
 		<form action="######" method="get" name="myform" onsubmit="return submitform(event);">
 			<input type="text" name="name">
 			<input type="text" name="sex">
@@ -354,12 +354,14 @@ radio, reset, submit, text, textarea, window
 
 	代码实例：
 	IE下起作用，其他不管用
-``` html?linenums
+``` html
 	<body onbeforeunload = "return 'are you sure to close this tab???';">
 	</body>
 ```
 
    **注意** Chrome，Firefox 试了很多种方法都不管用，心累，日他妈的，记得把这个问题解决哦！！！
+   
+   踩坑指路  ----->   [unload 踩坑](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/%E6%88%91%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/unload.md)
 
 ----------
 
