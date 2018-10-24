@@ -365,4 +365,74 @@ radio, reset, submit, text, textarea, window
 
 ----------
 
-### 
+### 鼠标 / 键盘属性
+
+ - 这两个看看就行 [altKey](http://www.w3school.com.cn/jsref/event_altkey.asp)  [button](http://www.w3school.com.cn/jsref/event_button.asp)  [ctrlKey](http://www.w3school.com.cn/jsref/event_ctrlkey.asp)  [metaKey](http://www.w3school.com.cn/jsref/event_metakey.asp)  [shiftKey ](http://www.w3school.com.cn/jsref/event_shiftkey.asp)
+
+ - clientX , clientY
+	 返回当事件被触发时鼠标指针向对于浏览器页面（或客户区）的水平坐标和垂直坐标。客户区指的是当前窗口。
+	代码如下：
+	``` html
+		<div onclick="clickme(event)">点击我</div>
+		<script>
+			function clickme(e){
+				console.log(e.clientX,e.clientY);
+			}
+		</script>
+	```
+	
+ - relatedTarget
+	返回与事件的目标节点相关的节点。
+
+``` html
+	<!DOCTYPE html>
+	<html>
+	  <head>
+		<title>Parent Frame</title>
+		<style>
+			div{
+				width: 300px;
+				height: 50px;
+			}
+			.onediv{
+				background:lightgreen;
+			}
+			.twodiv{
+				background:pink;
+			}
+		</style>
+		</head>
+	  <body>
+		<div class="onediv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event)">鼠标移动到我上面</div>
+		<div class="twodiv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event);">鼠标移动到我上面</div>
+		<script>
+			function leaveme(e){
+				console.log(e.relatedTarget);
+			}
+			function hoveronme(e){
+				console.log(e.relatedTarget);
+			}
+		</script>
+	  </body>
+	</html>
+```
+
+   对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
+   对于 mouseout 事件来说，该属性是鼠标离开当前节点时，进入的那个节点。
+   这个属性只能用于这两个事件，对于其他事件没有用。
+   
+ - screenX ，screenY
+	返回事件发生时鼠标指针相对于屏幕（注意是整个屏幕哦）的水平坐标和垂直坐标。
+	``` html
+		<div class="onediv" onclick="leaveme(event);" >鼠标移动到我上面</div>
+		<script>
+			function leaveme(e){
+				console.log(e);
+			}
+		</script>
+	```
+
+
+http://www.w3school.com.cn/html5/html5_ref_eventattributes.asp
+
+https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
