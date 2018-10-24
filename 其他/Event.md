@@ -367,7 +367,7 @@ radio, reset, submit, text, textarea, window
 
 ### 鼠标 / 键盘属性
 
- - 这两个看看就行 [altKey](http://www.w3school.com.cn/jsref/event_altkey.asp)  [button](http://www.w3school.com.cn/jsref/event_button.asp)  [ctrlKey](http://www.w3school.com.cn/jsref/event_ctrlkey.asp)  [metaKey](http://www.w3school.com.cn/jsref/event_metakey.asp)  [shiftKey ](http://www.w3school.com.cn/jsref/event_shiftkey.asp)
+ - 这几个看看就行 [altKey](http://www.w3school.com.cn/jsref/event_altkey.asp)  [button](http://www.w3school.com.cn/jsref/event_button.asp)  [ctrlKey](http://www.w3school.com.cn/jsref/event_ctrlkey.asp)  [metaKey](http://www.w3school.com.cn/jsref/event_metakey.asp)  [shiftKey ](http://www.w3school.com.cn/jsref/event_shiftkey.asp)
 
  - clientX , clientY
 	 返回当事件被触发时鼠标指针向对于浏览器页面（或客户区）的水平坐标和垂直坐标。客户区指的是当前窗口。
@@ -431,6 +431,102 @@ radio, reset, submit, text, textarea, window
 			}
 		</script>
 	```
+----------
+
+### 标准Event 属性
+
+ - bubbles 返回布尔值，指示事件是否是起泡事件类型。是起泡类型，则返回 true，否则返回 fasle。
+	``` html
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Document</title>
+			<script>
+				function clickme(event){
+					console.log(event.bubbles);
+				}
+			</script>
+		</head>
+		<body>
+			<p onmousedown="clickme(event);">clickme</p>
+		</body>
+		</html>
+	```
+	**事件传播**
+	在 2 级 DOM 中，事件传播分为三个阶段：
+	
+	第一，捕获阶段。事件从 Document 对象沿着文档树向下传递给目标节点。如果目标的任何一个先辈专门注册了捕获事件句柄，那么在事件传播过程中运行这些句柄。
+
+	第二个阶段发生在目标节点自身。直接注册砸目标上的适合的事件句柄将运行。这与 0 级事件模型提供的事件处理方法相似。
+
+	第三，起泡阶段。在此阶段，事件将从目标元素向上传播回或起泡回 Document 对象的文档层次。
+
+	**唔。。。看不懂  (；′⌒`)(；′⌒`)(；′⌒`)**
+
+ - cancelable 返回一个布尔值。表明是否可以取消事件的默认行为,如果用 preventDefault() 方法可以取消与事件关联的默认动作，则为 true，否则为 fasle。
+
+	``` html
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Document</title>
+			<script>
+				function clickme(event){
+					console.log(event);
+					console.log(event.bubbles);
+					console.log(event.cancelable);
+				}
+			</script>
+		</head>
+		<body>
+			<p onmousedown="clickme(event);">clickme</p>
+		</body>
+		</html>
+	```
+
+ - currentTarget 返回其事件监听器触发该事件的元素
+	``` html
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Document</title>
+			<script>
+				function clickme(event){
+					console.log(event.currentTarget);
+				}
+			</script>
+		</head>
+		<body>
+			<p onclick="clickme(event);">clickme</p>
+		</body>
+		</html>
+	```
+	**注意** 在捕获和起泡阶段，该属性是非常有用的，因为在这两个节点，它不同于 target 属性。
+
+ - eventPhase 返回事件传播的当前阶段
+ 
+ 
+	 
+
+| 常量                  | 值  | 阶段         |
+| --------------------- | --- | ------------ |
+| Event.CAPTURING_PHASE | 1   | 捕获阶段     |
+| Event.AT_TARGET       | 2   | 正常事件派发 |
+| Event.BUBBLING_PHASE  | 3   |起泡阶段|
+
+	Event.CAPTURING_PHASE	1     捕获阶段
+	Event.AT_TARGET	                 2            
+	Event.BUBBLING_PHASE	3
+
+
+
+
+
+
+
 
 
 http://www.w3school.com.cn/html5/html5_ref_eventattributes.asp
