@@ -1,5 +1,8 @@
 ## HTML DOM Event 对象
 
+我有一句mmp要讲，我整理这块知识的时候，原先看w3school 上的文档来的，结果看着看着发现不对，因为有些东西 W3C标准里已经废弃了，结果这个网站 [W3school](http://www.w3school.com.cn/)
+ **压根木有更新(╬￣皿￣)** ，心痛，踩了好多坑。以后再看文档多去国外查查吧！![enter description here](./images/1540450265227.png)  [MDN](https://developer.mozilla.org/en-US/)
+
 > Event对象代表事件的状态，比如事件在其中发生的元素，键盘按键的状态，鼠标的位置，鼠标按钮的状态。
 > **事件通常与函数结合使用，函数不会在事件发生前被执行。**
 
@@ -506,20 +509,152 @@ radio, reset, submit, text, textarea, window
 	```
 	**注意** 在捕获和起泡阶段，该属性是非常有用的，因为在这两个节点，它不同于 target 属性。
 
- - eventPhase 返回事件传播的当前阶段
- 
- 
-	 
+ - eventPhase 返回事件传播的当前阶段	 
 
-| 常量                  | 值  | 阶段         |
-| --------------------- | --- | ------------ |
-| Event.CAPTURING_PHASE | 1   | 捕获阶段     |
-| Event.AT_TARGET       | 2   | 正常事件派发 |
-| Event.BUBBLING_PHASE  | 3   |起泡阶段|
+	| 常量                  | 值  | 阶段         |
+	| --------------------- | --- | ------------ |
+	| Event.CAPTURING_PHASE | 1   | 捕获阶段     |
+	| Event.AT_TARGET       | 2   | 正常事件派发 |
+	| Event.BUBBLING_PHASE  | 3   |起泡阶段|
 
-	Event.CAPTURING_PHASE	1     捕获阶段
-	Event.AT_TARGET	                 2            
-	Event.BUBBLING_PHASE	3
+	``` html
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="UTF-8">
+			<title>Event</title>
+			<style>
+				div {
+				  margin: 20px;
+				  padding: 4px;
+				  border: thin black solid;
+				}
+				#divInfo {
+				  margin: 18px;
+				  padding: 8px;
+				  background-color:white;
+				  font-size:80%;
+				}
+			</style>
+		</head>
+		<body>
+			<h4>Event Propagation Chain</h4>
+			<ul>
+			  <li>Click 'd1'</li>
+			  <li>Analyse event propagation chain</li>
+			  <li>Click next div and repeat the experience</li>
+			  <li>Change Capturing mode</li>
+			  <li>Repeat the experience</li>
+			</ul>
+			<input type="checkbox" id="chCapture" />
+			<label for="chCapture">Use Capturing</label>
+			<div id="d1">d1
+				<div id="d2">d2
+					<div id="d3">d3
+						<div id="d4">d4</div>
+					</div>
+				</div>
+			</div>
+			<div id="divInfo"></div>
+
+			<script>
+				var clear = false, divInfo = null, divs = null, useCapture = false;
+				window.onload = function () {
+				  divInfo = document.getElementById("divInfo");
+				  divs = document.getElementsByTagName('div'); 
+				  chCapture = document.getElementById("chCapture");
+				  chCapture.onclick = function () { 
+					RemoveListeners();
+					AddListeners(); 
+				  }
+				  Clear();
+				  AddListeners();
+				}
+
+				function RemoveListeners() { 
+				  for (var i = 0; i < divs.length; i++) { 
+					var d = divs[i]; 
+					if (d.id != "divInfo") { 
+					  d.removeEventListener("click", OnDivClick, true);
+					  d.removeEventListener("click", OnDivClick, false);
+					}
+				  }
+				}
+
+				function AddListeners() { 
+				  for (var i = 0; i < divs.length; i++) { 
+					var d = divs[i];
+					if (d.id != "divInfo") { 
+					  d.addEventListener("click", OnDivClick, false); 
+					  if (chCapture.checked) 
+						d.addEventListener("click", OnDivClick, true);
+					  d.onmousemove = function () { clear = true; }; 
+					}
+				  }
+				} 
+
+				function OnDivClick(e) {
+				  if (clear) {
+					Clear(); clear = false;
+				  }
+				  if (e.eventPhase == 2)
+					e.currentTarget.style.backgroundColor = 'red';
+				  var level = e.eventPhase == 0 ? "none" : e.eventPhase == 1 ? "capturing" : e.eventPhase == 2 ? "target" : e.eventPhase == 3 ? "bubbling" : "error";
+				  divInfo.innerHTML += e.currentTarget.id + "; eventPhase: " + level + "<br/>";
+				}
+
+				function Clear() { 
+				  for (var i = 0; i < divs.length; i++) { 
+					if (divs[i].id != "divInfo")
+					  divs[i].style.backgroundColor = (i & 1) ? "#f6eedb" : "#cceeff";
+				  } 
+				  divInfo.innerHTML = ''; 
+				}
+			</script>
+		</body>
+		</html>
+	```
+ - timeStamp 返回一个时间戳，只是发生事件的日期和时间（从epoch开始的好描述）
+
+	epoch是一个事件参考点，在这里它是客户机启动的时间。
+	并非所有系统都提供该信息，因此timeStamp属性并非对所有系统事件都可用。
+	``` html
+		<p onclick="clickme(event);">click me</p>
+
+		<script>
+			function clickme(e){
+				console.log(e.timeStamp);
+			}
+		</script>
+	```
+	
+ - type 属性 返回发生的事件类型，即当前Event对象表示的事件名称。
+
+	它与注册的事件句柄同名，或者是事件句柄属性删除前缀“on” 比如“submit”，“load”，“click”。
+	``` html
+		<p onclick="clickme(event);">click me</p>
+
+		<script>
+			function clickme(e){
+				console.log(e.type);
+			}
+		</script>
+	```
+
+----------
+
+### 标准Event方法
+
+ - initEvent()  **已废弃**
+
+ - 
+
+
+
+
+
+
+
 
 
 
