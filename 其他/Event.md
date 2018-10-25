@@ -1,7 +1,7 @@
 ## HTML DOM Event 对象
 
 我有一句mmp要讲，我整理这块知识的时候，原先看w3school 上的文档来的，结果看着看着发现不对，因为有些东西 W3C标准里已经废弃了，结果这个网站 [W3school](http://www.w3school.com.cn/)
- **压根木有更新(╬￣皿￣)** ，心痛，踩了好多坑。以后再看文档多去国外查查吧！![enter description here](./images/1540450265227.png)  [MDN](https://developer.mozilla.org/en-US/)
+ **压根木有更新(╬￣皿￣)** ，心痛，踩了好多坑。以后再看文档多去国外查查吧！——>   **[MDN](https://developer.mozilla.org/en-US/)** 
 
 > Event对象代表事件的状态，比如事件在其中发生的元素，键盘按键的状态，鼠标的位置，鼠标按钮的状态。
 > **事件通常与函数结合使用，函数不会在事件发生前被执行。**
@@ -620,7 +620,6 @@ radio, reset, submit, text, textarea, window
 	并非所有系统都提供该信息，因此timeStamp属性并非对所有系统事件都可用。
 	``` html
 		<p onclick="clickme(event);">click me</p>
-
 		<script>
 			function clickme(e){
 				console.log(e.timeStamp);
@@ -633,7 +632,6 @@ radio, reset, submit, text, textarea, window
 	它与注册的事件句柄同名，或者是事件句柄属性删除前缀“on” 比如“submit”，“load”，“click”。
 	``` html
 		<p onclick="clickme(event);">click me</p>
-
 		<script>
 			function clickme(e){
 				console.log(e.type);
@@ -647,9 +645,23 @@ radio, reset, submit, text, textarea, window
 
  - initEvent()  **已废弃**
 
- - 
+ - preventDefault() 该方法告诉用户代理（比如浏览器）如果事件没有得到明确处理，则不应该采用它的默认操作（如果存在这样的操作）。事件继续像往常一样传播，除非其事件监听器之一调用stopPropagation() 或者stopImmediatePropagation()，其中任何一个都会立即终止传播。
 
+	``` html
+		<a href="http://www.baidu.com" onclick="clickA(event);">点击我</a>
+		<script>
+			function clickA(e){
+				e.preventDefault();
+				console.log("点击了a标签");
+			}
+		</script>
+	```
+	**注意** 如果 Event 对象的 cancelable 属性是 fasle，那么就没有默认动作，或者不能阻止默认动作。无论哪种情况，调用该方法都没有作用。
 
+ - stopPropagation() 不再派发事件
+
+	该方法将停止事件的传播，阻止它被分派到其他 Document 节点。在事件传播的任何阶段都可以调用它。注意，虽然该方法不能阻止同一个 Document 节点上的其他事件句柄被调用，但是它可以阻止把事件分派到其他节点。
+	额，看不懂┐(‘～`；)┌   ，指路——> **[事件冒泡](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/Event_bubble.md)**
 
 
 
