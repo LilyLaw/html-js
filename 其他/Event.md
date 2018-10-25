@@ -9,14 +9,14 @@
 ### 事件句柄（Event Handlers）
 
  - onabort 图像的加载被中断
-``` html
-	<img src="https://github.com/LilyLaw/html_js_training/blob/master/img/15.jpg?raw=true" onabort="abortImage()" />
-    <script type="text/javascript">
-        function abortImage() {
-            alert('Error: Loading of the image was aborted')
-        }
-    </script>
-```
+	``` html
+		<img src="https://github.com/LilyLaw/html_js_training/blob/master/img/15.jpg?raw=true" onabort="abortImage()" />
+		<script type="text/javascript">
+			function abortImage() {
+				alert('Error: Loading of the image was aborted')
+			}
+		</script>
+	```
  - onblur 元素失去焦点
 	 支持该事件的html标签有如下
 	>  ```<a>```, ```<acronym>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>,``` 
@@ -39,15 +39,15 @@ radio, reset, submit, text, textarea, window
 	 > fileUpload, select, text, textarea
 	 
 	 代码实例：
-``` html
-	<input type="text" onchange="logme(event);">
-    <script type="text/javascript">
-        function logme(event) {
-            console.log(event.target.value);
-        }
-    </script>
-```
-**注意**  onchange 在属性值改变，```且失去焦点```的时候才可以激活。
+	``` html
+		<input type="text" onchange="logme(event);">
+		<script type="text/javascript">
+			function logme(event) {
+				console.log(event.target.value);
+			}
+		</script>
+	```
+	**注意**  onchange 在属性值改变，```且失去焦点```的时候才可以激活。
 
  - onclick 单击
 	 onclick 事件是在同一元素上发生```鼠标按下和鼠标松开```的时候才发生。
@@ -56,14 +56,14 @@ radio, reset, submit, text, textarea, window
 	 双击后才发生。
 	 
 	 代码实例：
-``` html
-	<input type="text" ondblclick="logme(event);">
-    <script type="text/javascript">
-        function logme(event) {
-            console.log(event.target.value);
-        }
-    </script>
-```
+	``` html
+		<input type="text" ondblclick="logme(event);">
+		<script type="text/javascript">
+			function logme(event) {
+				console.log(event.target.value);
+			}
+		</script>
+	```
 
  - onerror 在加载文档或图像时发生错误
 	 支持该事件的html标签：
@@ -71,14 +71,14 @@ radio, reset, submit, text, textarea, window
 	 
 	 支持该事件的JavaScript对象：
 	 > window, image
-``` html
-	<img src="sdfjsdfjsdf.jpg" alt="" onerror="logerror();">
-    <script>
-        function logerror(){
-            console.log("I can't find the image");
-        }
-    </script>
-```
+	``` html
+		<img src="sdfjsdfjsdf.jpg" alt="" onerror="logerror();">
+		<script>
+			function logerror(){
+				console.log("I can't find the image");
+			}
+		</script>
+	```
 
  - onfocus 元素获得焦点
 	 支持该事件的html标签：
@@ -101,14 +101,14 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html
-	<input type="text" onkeydown="loginfo(event)">
-    <script>
-        function loginfo(e){
-           console.log(e);
-        }
-    </script>
-```
+	``` html
+		<input type="text" onkeydown="loginfo(event)">
+		<script>
+			function loginfo(e){
+			   console.log(e);
+			}
+		</script>
+	```
  - onkeypress 某个键盘按键被按下并松开
 	支持该事件的html标签：
 	> ```<a>```, ```<acronym>```, ```<address>```, ```<area>```, ```<b>```, ```<bdo>```, ```<big>```, ```<blockquote>```, ```<body>```, ```<button>```, ```<caption>```, ```<cite>```, ```<code>```, ```<dd>```, ```<del>```, ```<dfn>```, ```<div>```, ```<dt>```, ```<em>```, ```<fieldset>```, ```<form>```, ```<h1>``` to ```<h6>```, ```<hr>```, ```<i>```, ```<input>```, ```<kbd>```, ```<label>```, ```<legend>```, ```<li>```, ```<map>```, ```<object>```, ```<ol>```, ```<p>```, ```<pre>```, ```<q>```, ```<samp>```, ```<select>```, ```<small>```, ```<span>```, ```<strong>```, ```<sub>```, ```<sup>```, ```<table>```, ```<tbody>```, ```<td>```, ```<textarea>```, ```<tfoot>```, ```<th>```, ```<thead>```, ```<tr>```, ```<tt>```, ```<ul>```, ```<var>```
@@ -117,14 +117,14 @@ radio, reset, submit, text, textarea, window
 	> document, image, link, textarea
 	
 	代码实例：
-``` html
-	<input type="text" onkeypress="loginfo(event)">
-    <script>
-        function loginfo(e){
-           console.log(e);
-        }
-    </script>
-```
+	``` html
+		<input type="text" onkeypress="loginfo(event)">
+		<script>
+			function loginfo(e){
+			   console.log(e);
+			}
+		</script>
+	```
 
  - onkeyup 某个键盘按键被松开
 	 
@@ -135,14 +135,14 @@ radio, reset, submit, text, textarea, window
 	 > document, image, link, textarea
 	 
 	 代码实例：
-``` html
-	<input type="text" onkeyup="loginfo(event)">
-    <script>
-        function loginfo(e){
-           console.log(e);
-        }
-    </script>
-```
+	``` html
+		<input type="text" onkeyup="loginfo(event)">
+		<script>
+			function loginfo(e){
+			   console.log(e);
+			}
+		</script>
+	```
 
  - onload 一张页面或一幅图像加载完成
 	
@@ -153,25 +153,25 @@ radio, reset, submit, text, textarea, window
 	> image, layer, window
 
 	代码实例：
-``` html
-	<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		<img src="15.jpg" alt="" onload="loginfo(event);">
-		<script>
-			function loginfo(e){
-			   console.log("图片加载完成");
-			}
+	``` html
+		<html>
+		<head>
+			<title></title>
+		</head>
+		<body>
+			<img src="15.jpg" alt="" onload="loginfo(event);">
+			<script>
+				function loginfo(e){
+				   console.log("图片加载完成");
+				}
 
-			window.onload=function(){
-				console.log("页面加载完成");
-			}
-		</script>
-	</body>
-	</html>
-```
+				window.onload=function(){
+					console.log("页面加载完成");
+				}
+			</script>
+		</body>
+		</html>
+	```
 
  - onmousedown 鼠标按钮被按下
 	
@@ -182,14 +182,14 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-``` html
-	<img src="15.jpg" alt="" onmousedown="loginfo(event);">
-    <script>
-        function loginfo(e){
-           console.log("图片加载完成");
-        }
-    </script>
-```
+	``` html
+		<img src="15.jpg" alt="" onmousedown="loginfo(event);">
+		<script>
+			function loginfo(e){
+			   console.log("图片加载完成");
+			}
+		</script>
+	```
    **注意** 鼠标左右键点击都可以触发此事件
    
  - onmouseup 鼠标按键被松开
@@ -201,14 +201,14 @@ radio, reset, submit, text, textarea, window
 	> button, document, link
 	
 	代码实例：
-```html
-	<img src="15.jpg" alt="" onmouseup="loginfo(event);">
-    <script>
-        function loginfo(e){
-           console.log("图片加载完成");
-        }
-    </script>
-```
+	```html
+		<img src="15.jpg" alt="" onmouseup="loginfo(event);">
+		<script>
+			function loginfo(e){
+			   console.log("图片加载完成");
+			}
+		</script>
+	```
 
  - onmousemove 鼠标被移动
 	 事件在鼠标指针移动时发生
@@ -221,14 +221,14 @@ radio, reset, submit, text, textarea, window
 因为鼠标移动非常频繁。
    
    代码实例：
-``` html
-	<img src="15.jpg" alt="" onmousemove="loginfo(event);">
-    <script>
-        function loginfo(e){
-           console.log("图片加载完成");
-        }
-    </script>
-```
+	``` html
+		<img src="15.jpg" alt="" onmousemove="loginfo(event);">
+		<script>
+			function loginfo(e){
+			   console.log("图片加载完成");
+			}
+		</script>
+	```
 
    **注意：**每当用户鼠标移动一个像素就会发生一个mousemove事件，这会耗费系统资源去处理所有这些mousemove事件，因此应谨慎地使用该事件。
    
@@ -241,14 +241,14 @@ radio, reset, submit, text, textarea, window
 	> layer，link
 	
 	代码实例：
-``` html
-	<img src="15.jpg" alt="" onmouseout="loginfo(event);" style="width:400px;height:auto;">
-    <script>
-        function loginfo(e){
-           console.log("图片加载完成");
-        }
-    </script>
-```
+	``` html
+		<img src="15.jpg" alt="" onmouseout="loginfo(event);" style="width:400px;height:auto;">
+		<script>
+			function loginfo(e){
+			   console.log("图片加载完成");
+			}
+		</script>
+	```
 
  - onmouseover 鼠标移到某元素之上
 	
@@ -259,14 +259,14 @@ radio, reset, submit, text, textarea, window
 	> layer, link
 	
 	代码实例：
-``` html
-	<img src="15.jpg" alt="" onmouseover="loginfo(event);" style="width:400px;height:auto;">
-    <script>
-        function loginfo(e){
-           console.log("图片加载完成");
-        }
-    </script>
-```
+	``` html
+		<img src="15.jpg" alt="" onmouseover="loginfo(event);" style="width:400px;height:auto;">
+		<script>
+			function loginfo(e){
+			   console.log("图片加载完成");
+			}
+		</script>
+	```
 
  - onreset	重置按钮被点击
 	
@@ -277,19 +277,19 @@ radio, reset, submit, text, textarea, window
 	> form
 
 	代码实例：
-``` html
-	<form action="" onreset="resetform(event);">
-        姓名：<input type="text" name="name" value="LilyLaw">
-        性别：<input type="radio" name="sex" checked="checked" value="female"> female <br/>
-        <input type="radio" name="sex" value="male"> 
-        <input type="reset" value="reset">
-    </form>
-    <script>
-        function resetform(e){
-            console.log("this form will be reset");
-        }
-    </script>
-```
+	``` html
+		<form action="" onreset="resetform(event);">
+			姓名：<input type="text" name="name" value="LilyLaw">
+			性别：<input type="radio" name="sex" checked="checked" value="female"> female <br/>
+			<input type="radio" name="sex" value="male"> 
+			<input type="reset" value="reset">
+		</form>
+		<script>
+			function resetform(e){
+				console.log("this form will be reset");
+			}
+		</script>
+	```
 
  - onresize 窗口或框架重新被调整大小
 	
@@ -300,17 +300,17 @@ radio, reset, submit, text, textarea, window
 	> window
 
 	代码实例：
-``` html
-	<div onresize="divresize(event)">sdfsdfsdfsdfs</div>
-    <script>
-        function divresize(){
-            console.log("divresize");
-        }
-        window.onresize = function(){
-            console.log("windowresize");
-        }
-    </script>
-```
+	``` html
+		<div onresize="divresize(event)">sdfsdfsdfsdfs</div>
+		<script>
+			function divresize(){
+				console.log("divresize");
+			}
+			window.onresize = function(){
+				console.log("windowresize");
+			}
+		</script>
+	```
 
  - onselect 文本被选中
 
@@ -357,10 +357,10 @@ radio, reset, submit, text, textarea, window
 
 	代码实例：
 	IE下起作用，其他不管用
-``` html
-	<body onbeforeunload = "return 'are you sure to close this tab???';">
-	</body>
-```
+	``` html
+		<body onbeforeunload = "return 'are you sure to close this tab???';">
+		</body>
+	```
 
    **注意** Chrome，Firefox 试了很多种方法都不管用，心累，日他妈的，记得把这个问题解决哦！！！
    
@@ -387,38 +387,38 @@ radio, reset, submit, text, textarea, window
  - relatedTarget
 	返回与事件的目标节点相关的节点。
 
-``` html
-	<!DOCTYPE html>
-	<html>
-	  <head>
-		<title>Parent Frame</title>
-		<style>
-			div{
-				width: 300px;
-				height: 50px;
-			}
-			.onediv{
-				background:lightgreen;
-			}
-			.twodiv{
-				background:pink;
-			}
-		</style>
-		</head>
-	  <body>
-		<div class="onediv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event)">鼠标移动到我上面</div>
-		<div class="twodiv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event);">鼠标移动到我上面</div>
-		<script>
-			function leaveme(e){
-				console.log(e.relatedTarget);
-			}
-			function hoveronme(e){
-				console.log(e.relatedTarget);
-			}
-		</script>
-	  </body>
-	</html>
-```
+	``` html
+		<!DOCTYPE html>
+		<html>
+		  <head>
+			<title>Parent Frame</title>
+			<style>
+				div{
+					width: 300px;
+					height: 50px;
+				}
+				.onediv{
+					background:lightgreen;
+				}
+				.twodiv{
+					background:pink;
+				}
+			</style>
+			</head>
+		  <body>
+			<div class="onediv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event)">鼠标移动到我上面</div>
+			<div class="twodiv" onmouseout="leaveme(event);" onmouseover = "hoveronme(event);">鼠标移动到我上面</div>
+			<script>
+				function leaveme(e){
+					console.log(e.relatedTarget);
+				}
+				function hoveronme(e){
+					console.log(e.relatedTarget);
+				}
+			</script>
+		  </body>
+		</html>
+	```
 
    对于 mouseover 事件来说，该属性是鼠标指针移到目标节点上时所离开的那个节点。
    对于 mouseout 事件来说，该属性是鼠标离开当前节点时，进入的那个节点。
@@ -662,20 +662,3 @@ radio, reset, submit, text, textarea, window
 
 	该方法将停止事件的传播，阻止它被分派到其他 Document 节点。在事件传播的任何阶段都可以调用它。注意，虽然该方法不能阻止同一个 Document 节点上的其他事件句柄被调用，但是它可以阻止把事件分派到其他节点。
 	额，看不懂┐(‘～`；)┌   ，指路——> **[事件冒泡](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/Event_bubble.md)**
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-http://www.w3school.com.cn/html5/html5_ref_eventattributes.asp
-
-https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5
