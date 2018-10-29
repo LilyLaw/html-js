@@ -58,8 +58,4 @@ childNodes 列表包括所有的子节点，包括非元素节点，如文本和
 
 item() 方式： ```var element = HTMLCollection.item(index)```
 
-建议用数据方式：```var element = HTMLCollection[index]```
-
-
-
-备注，看看这个页面下面的东西  https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children
+建议用数组方式：```var element = HTMLCollection[index]```

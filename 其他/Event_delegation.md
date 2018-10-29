@@ -68,10 +68,8 @@
    综上，利用事件委托可以有以下两点好处：
    1. 提高性能（**其实我还是没懂怎么就提高性能了，因为每个子元素没有监听器就提高性能了吗？？？[・ヘ・?]** ）
    2. 新添加的元素拥有对应的所有事件
+      
    
-   
-   
-   
-   此处踩坑，  [JavaScript那些children。。。(T﹏T) ](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/%E6%88%91%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/childrenNode.md)
+   此处踩坑，  [DOM那些children。。。(T﹏T) ](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/%E6%88%91%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91/childrenNode.md)
    
   此外javascript 性能  需要了解一下
