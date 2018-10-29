@@ -27,7 +27,8 @@
 
 		从上面我们知道查找变量的时候回一层一层去找直到找到最顶层，层数越多，查找事件越长。所以应尽可能的使用局部变量
 	如下代码：
-	``` javascript
+	
+   ``` javascript
 	function createEle(){
 		var ele = document.createElement("div");
 	}
@@ -36,9 +37,16 @@
 		var doc = document;
 		var ele = doc.createElement("div");
 	}
-	```
+   ```
 	
    当document使用次数比较少的时候，用createEle()的方法写没什么影响，但如果是一个大循环里面多次调用document对象，最好将document赋值给局部变量。
    
    来看下jquery:
+   ``` javascript
+   (function(window,undefined){
+   		var jQuery = function(){}
+		//...
+		window.jQuery = window.$ = jQuery;
+   })(window);
+   ```
 	
