@@ -65,5 +65,75 @@
 
 #### 其他优化方式
 	
+   1. 条件判断
+
+``` javascript
+if(val == 0) {
+    return v0;
+}else if(val == 1) {
+    return v1;
+}else if(val == 2) {
+    return v2;
+}else if(val == 3) {
+    return v3;
+}else if(val == 4) {
+    return v4;
+}
+```
+
+   当条件分支比较多时，将出现概率大的放上面，减少判断次数。
+
+   当判断条件较多时，使用switch语句，性能会比if好(**具体怎么好这个先不用管，不重要**)
    
+   另外其他方面优化，例如：
+``` javascript
+if(condition1){
+	return v1;
+}else{
+	return v2;
+}
+
+// 改为下面这种
+
+if(condition1){
+	return v1;
+}
+return v2;
+```
+
+   2. 快速循环
+
+		- 循环总次数使用局部变量
+		``` javascript
+		for(var i=0;i<arr.length;i++){
+            //...
+        }
+		
+		// 改为下面这种
+		
+		var len = arr.length;
+		for(var i=0;i<len;i++){
+            //...
+        }
+		```
 	
+		这样就避免了每次循环的属性查找，这点很重要，因为很多人在操作DOM的时候会像下面这样写,查找DOM元素的属性是相对耗时的，所以应该避免这种写法：	
+
+		``` javascript
+		var divList = document.getElementsByTagName("div");
+		for( var i = 0;i < divList.length;i++) {
+			// ...
+		}
+		```
+	
+   3. [事件委托](https://github.com/LilyLaw/html_js_training/blob/master/%E5%85%B6%E4%BB%96/Event_delegation.md)
+
+	
+   总结来自这个文档https://www.cnblogs.com/MarcoHan/p/5315361.html 但感觉有些东西写的没必要或暂时用不到就没有添加进去。
+		
+		
+		
+		
+		
+
+   
