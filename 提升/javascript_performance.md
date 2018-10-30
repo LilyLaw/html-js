@@ -130,6 +130,8 @@ return v2;
 
 	
    总结来自这个文档https://www.cnblogs.com/MarcoHan/p/5315361.html 但感觉有些东西写的没必要或暂时用不到就没有添加进去。
+   
+   哇塞这个文档也感觉很牛逼的样子 http://www.css88.com/archives/8437  记得看一看
 		
 		
 		
