@@ -193,8 +193,8 @@ promiseAnimate(ball1,100)
 
 具体逻辑稍后描述,但看代码就会发现较之前代码高内聚低耦合,改小球顺序只需简单移动本身即可,便于后期维护.
 
-### [Promise 简介][1]
-
+###  [Promise 简介][1]
+[1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
 实现异步编程,比传统的解决方案更加强大合理.
 
 Promise 对象有以下特点:
@@ -218,7 +218,5 @@ var promise = new Promise(function(resolve,reject){
 
 resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），在异步操作成功时调用，并将异步操作的结果，作为参数传递出去；reject函数的作用是，将Promise对象的状态从“未完成”变为“失败”（即从 pending 变为 rejected），在异步操作失败时调用，并将异步操作报出的错误，作为参数传递出去。```
 
-
-
-
-  [1]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise
+  
+  
