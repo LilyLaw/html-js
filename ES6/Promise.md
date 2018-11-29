@@ -231,20 +231,56 @@ then方法可以接受两个回调函数作为参数。第一个回调函数是P
 
 #### Promise.prototype.then()
 
-为 Promise 实例添加状态改变时的回调函数。前面说过，then方法的第一个参数是resolved状态的回调函数，第二个参数（可选）是rejected状态的回调函数。
+   为 Promise 实例添加状态改变时的回调函数。前面说过，then方法的第一个参数是resolved状态的回调函数，第二个参数（可选）是rejected状态的回调函数。
 
-then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即then方法后面再调用另一个then方法。
-``` javascript
-getJSON("/posts.json").then(function(json) {
-  return json.post;
-}).then(function(post) {
-  // ...
-});
-```
+   then方法返回的是一个新的Promise实例（注意，不是原来那个Promise实例）。因此可以采用链式写法，即then方法后面再调用另一个then方法。
+   ``` javascript
+	getJSON("/posts.json").then(function(json) {
+	  return json.post;
+	}).then(function(post) {
+	  // ...
+	});
+   ```
 
 #### Promise.prototype.catch()
 
-Promise.prototype.cath() 是 .then(null,rejection) 方法的别名,用于指定发生错误时的回调函数.
+   Promise.prototype.cath() 是 .then(null,rejection) 方法的别名,用于指定发生错误时的回调函数.
+   ``` javascript
+	getJson('/post/json').then(function(){
+		// 请求成功,正常返回
+	}).cathc(function(){
+		// 处理getJson和前一个回调函数运行时发生的错误.
+	});
+   ```
+
+   上面代码中，getJSON方法返回一个 Promise 对象，如果该对象状态变为resolved，则会调用then方法指定的回调函数；如果异步操作抛出错误，状态就会变为rejected，就会调用catch方法指定的回调函数，处理这个错误。另外，then方法指定的回调函数，如果运行中抛出错误，也会被catch方法捕获。
+
+#### Promise.prototype.finally()
+
+   finally() 方法用于指定不管Promise对象最后状态如何,都会执行的操作.该方法是ES2018引入的.
+   ``` javascript
+   promise
+   		.then(function(){})
+		.catch(function(){})
+		.finally(function(){})
+   ```
+   下面是一个例子，服务器使用 Promise 处理请求，然后使用finally方法关掉服务器。
+   ``` javascript
+	server.listen(port)
+	  .then(function () {
+		// ...
+	  })
+	  .finally(server.stop);
+   ```
+
+   finally() 方法的回调函数不接受任何参数,所以没办法知道前面的promise状态到底是fulfilled还是rejected. 这表明,finally()方法里面的操作,应该是与状态无关,不依赖于Promise的执行结果.
+   
+ 剩下的方法在http://es6.ruanyifeng.com/#docs/promise  
+ 自己看去吧,多看看例子
+
+   
+   
+
 
 
 
