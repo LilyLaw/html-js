@@ -14,6 +14,7 @@
 ```
 
 后台打印输出结果:
+
 ![enter description here][1]
 
 2. 
@@ -27,6 +28,7 @@
 ```
 
 后台打印输出结果:
+
 ![enter description here][2]
 
 发现form标签如果不加```enctype="multipart/form-data" ``` 那么后台无法获取上传文件的详细信息.查阅资料后才发现
