@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<canvas id="canvas" width="1200" height="600"></canvas>
+
+	<script type="text/javascript" src="./digit.js"></script>
+	<script type="text/javascript">
+		var timenow = new Date();
+		var hours = timenow.getHours();
+		var min = timenow.getMinutes();
+		var sec = timenow.getSeconds();
+
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext('2d');
+
+		window.onload = function(){
+			startTime(hours,min,sec);
+		}
+		function startTime(hours,min,sec){
+			setTimeout(function(){
+				if(sec==59){
+					if(min==59){
+						hours += 1;
+						min = 0;
+						sec = 0;
+					}else{
+						min += 1;
+						sec = 0;
+					}
+
+				}else{
+					sec += 1;
+				}
+				context.clearRect(0,0,1200,600);
+				startTime(hours,min,sec);
+			},1000);
+
+			var rendarr = [
+				{
+					order:parseInt(hours/10),
+					cx:10,
+				},{
+					order:parseInt(hours%10),
+					cx:170,
+				},{
+					order:10,
+					cx:310,
+				},{
+					order:parseInt(min/10),
+					cx:390,
+				},{
+					order:parseInt(min%10),
+					cx:550,
+				},{
+					order:10,
+					cx:690,
+				},{
+					order:parseInt(sec/10),
+					cx:770,
+				},{
+					order:parseInt(sec%10),
+					cx:930,
+				}
+			]
+
+			rendarr.forEach((item,i)=>{
+				renderimg(digit[item.order],item.cx,10);
+			});
+		}
+
+		function renderimg(arr,cx,cy){
+			var cxx = cx,cyy = cy;
+			arr.forEach((item,i)=>{
+				var tcx = cxx;
+				item.forEach((itemc,j)=>{
+					if(itemc>0){
+						context.beginPath();
+						context.arc(tcx,cyy,10,0*Math.PI,2*Math.PI);
+						context.closePath();
+						context.fillStyle = "green";
+						context.fill();
+					}
+					tcx	+= 20;
+				});
+				cyy+=20;
+			});
+		}
+
+	</script>
+</body>
+</html>

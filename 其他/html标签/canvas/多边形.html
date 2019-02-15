@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>多边形</title>
+</head>
+<body>
+	<canvas id="canvas" width="1024" height="768" style="border:1px solid black;margin: auto">
+		you browser doesn't support canvas
+	</canvas>
+
+	<script>
+		// context.beginPath();
+		// context.moveTo(100,100);
+		// context.lineTo(700,700);
+		// context.lineTo(100,700);
+		// context.lineTo(100,100);
+		// context.closePath();
+
+		// context.lineWidth = 5;
+		// context.strokeStyle = "green";
+		// context.stroke();
+
+		// context.fillStyle = "lightpink";
+		// context.fill();
+
+		// context.beginPath();
+		// context.moveTo(200,100);
+		// context.lineTo(700,600);
+		// context.closePath();
+		// context.strokeStyle = "orange";
+		// context.stroke();
+
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext('2d');
+		window.onload = function(){
+
+			var paths = [
+				{path:[{x:100,y:100},{x:400,y:400},{x:100,y:700},{x:100,y:100}],color:"lightblue"},
+				{path:[{x:100,y:100},{x:700,y:100},{x:400,y:400},{x:100,y:100}],color:"lightgreen"},
+				{path:[{x:700,y:100},{x:700,y:400},{x:550,y:550},{x:550,y:250},{x:700,y:100}],color:"red"},
+				{path:[{x:550,y:250},{x:550,y:550},{x:400,y:400},{x:550,y:250}],color:"yellow"},
+				{path:[{x:400,y:400},{x:550,y:550},{x:400,y:700},{x:250,y:550},{x:400,y:400}],color:"purple"},
+				{path:[{x:250,y:550},{x:400,y:700},{x:100,y:700},{x:250,y:550}],color:"pink"},
+				{path:[{x:700,y:400},{x:700,y:700},{x:400,y:700},{x:700,y:400}],color:"orange"}
+			];
+
+			draw(paths);
+		}
+
+		function draw(paths){
+			paths.forEach((item,i)=>{
+				context.beginPath();
+				context.moveTo(item.path[0]['x'],item.path[0]['y']);
+				for (var i = 1; i < item.path.length; i++) {
+					context.lineTo(item.path[i]["x"],item.path[i]["y"]);
+				}
+				context.closePath();
+				context.fillStyle = item.color;
+				context.fill();
+			})
+		}
+	</script>
+</body>
+</html>
