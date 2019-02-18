@@ -13,13 +13,13 @@
 		var hours = timenow.getHours();
 		var min = timenow.getMinutes();
 		var sec = timenow.getSeconds();
-
 		var canvas = document.getElementById("canvas");
 		var context = canvas.getContext('2d');
 
 		window.onload = function(){
 			startTime(hours,min,sec);
 		}
+
 		function startTime(hours,min,sec){
 			setTimeout(function(){
 				if(sec==59){
@@ -90,6 +90,30 @@
 			});
 		}
 
+		function sports(sportsParam){
+			var tempSP = sportsParam;
+			var tempxcenter = tempSP.position.x_center - tempSP.vx;
+			var tempvy = tempSP.vy+tempSP.g;
+			var tempycenter = tempSP.position.y_center + (tempSP.vy + 0.5*tempSP.g);
+
+			if(tempycenter+10>=600){
+				tempycenter = 590;
+				tempvy = -tempvy*0.8;	// 摩擦系数
+			}
+			tempSP.vy = tempvy;
+			tempSP.position.y_center = tempycenter;
+			tempSP.position.x_center = tempxcenter;
+
+			context.beginPath();
+			context.arc(tempxcenter,tempycenter,10,0*Math.PI,2*Math.PI);
+			context.closePath();
+			context.fillStyle = "blue";
+			context.fill();
+
+			setTimeout(()=>{
+ 				sports(tempSP)
+			},1000);
+		}
 	</script>
 </body>
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>sports</title>
+</head>
+<body>
+	<canvas id="canvas" width = "1000" height = "600" style="border:1px solid red">
+		your browser doesn't support canvas,please change.
+	</canvas>
+
+	<script type="text/javascript">
+		var canvas = document.getElementById("canvas");
+		var context = canvas.getContext('2d');
+
+		window.onload = function(){
+			var sportsParam={
+				vx:3,
+				vy:0,
+				g:4,
+				position:{
+					x_center:900,
+					y_center:100
+				}
+			}
+
+			sports(sportsParam);
+		}
+
+		function sports(sportsParam){
+			var tempSP = sportsParam;
+			var tempxcenter = tempSP.position.x_center - tempSP.vx;
+			var tempvy = tempSP.vy+tempSP.g;
+			var tempycenter = tempSP.position.y_center + (tempSP.vy + 0.5*tempSP.g);
+
+			if(tempycenter+10>=600){
+				tempycenter = 590;
+				tempvy = -tempvy*0.8;	// 摩擦系数
+			}
+			tempSP.vy = tempvy;
+			tempSP.position.y_center = tempycenter;
+			tempSP.position.x_center = tempxcenter;
+
+			context.beginPath();
+			context.arc(tempxcenter,tempycenter,10,0*Math.PI,2*Math.PI);
+			context.closePath();
+			context.fillStyle = "blue";
+			context.fill();
+
+			setTimeout(()=>{
+				context.clearRect(0,0,1000,600);
+				sports(tempSP)
+			},100);
+		}
+	</script>
+</body>
+</html>
