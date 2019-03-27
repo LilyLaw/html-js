@@ -22,3 +22,38 @@ key1=value1&key2=value2的方式发送到服务器。如下代码
 
 ### application/json
 
+注意：jquery的ajax请求默认是 ```application/x-www-form-urlencode```
+
+数据以对象的格式发送，axios 默认编码方式是 application/json，
+``` javascript
+import axios from 'axios';
+
+axios.post(param.url, {username:"admin",password:"admin"})
+	.then(function (res) {
+		console.log(111,res);
+		// 请求成功，返回用户数据
+		if(0===res.status){
+			typeof resolve==='function' && resolve(res.data,res.msg);
+		}
+		// 没有登录，强制登录
+		else if(10===res.status){
+			this.doLogin();
+		}else{
+			typeof reject==='function' && reject(res.msg || res.data);
+		}
+	})
+	.catch(function (err) {
+		typeof reject==='function' && reject(err.statusText);
+	});
+```
+接收到的请求：
+
+![post data format](https://github.com/LilyLaw/bug-records/blob/master/img/postdata.png?raw=true)
+
+### multipart/form-data
+
+文件上传必须，详见 https://github.com/LilyLaw/bug-records/blob/master/form%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0.md
+
+### text/xml
+
+应用场景较少，了解即可，用到了再说
