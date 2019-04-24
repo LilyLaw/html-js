@@ -34,6 +34,18 @@ console.log(res2);	// he IS a boy , IS he good at math, IS n
 ```i``` : ignore case 忽略大小写，默认是大小写敏感的
 ```m``` : multiple lines 多行搜索
 
+### 正则表达式对象属性
+
+- global 是否是全局搜索，默认是false
+- ignoreCase 是否忽略大小写，默认是false
+- multiline 是否是多行搜索，默认是false
+- source 表达式文本内容（不包含修饰符）
+- lastIndex  当前表达式匹配内容的最后一个字符的下一个位置
+
+### 正则表达式对象方法
+
+-test 测试字符串参数中是否存在匹配正则表达式模式的字符串
+
 
 
 
